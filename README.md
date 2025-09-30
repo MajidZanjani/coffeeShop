@@ -4,4 +4,4 @@ RS School coffee house project
 
 ## Home Page
 
-![home page](https://MajidZanjani.github.io/coffee-house/)
+![home page](https://MajidZanjani.github.io/coffee-house/home.html)
