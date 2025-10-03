@@ -1,0 +1,113 @@
+/* Colors */
+:root {
+  --text-dark: #403f3d;
+  --text-light: #e1d4c9;
+  --text-accent: #b0907a;
+  --background-body: #e1d4c9;
+  --background-container: #665f55;
+  --background-backdrop: #403f3d;
+  --border-light: #c1b6ad;
+  --border-dark: #665f55;
+}
+
+/* Tablet (>=768px) */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 40px;
+  }
+  .offer {
+    padding: 30px 60px;
+  }
+  .heroTitle {
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 105%;
+  }
+  .favCoffee {
+    margin-top: 100px;
+  }
+  .favTitle {
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 125%;
+  }
+  .carousel-arrow {
+    display: flex;
+  }
+  .aboutTitle {
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 125%;
+    margin: 100px 0 40px 0;
+  }
+  .mobileAppTitle {
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 125%;
+  }
+  .mobileApp .apps {
+    flex-direction: row;
+  }
+  .mobileAppImage img {
+    max-width: 630px;
+    margin-bottom: 100px;
+  }
+  footer {
+    margin-bottom: 40px;
+    height: 736px;
+    padding: 100px 60px;
+  }
+  .footer-message span {
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 125%;
+  }
+  .footerMessageDark {
+    display: block;
+  }
+  footer .social {
+    margin: 40px 0 100px 0;
+  }
+}
+
+/* Desktop (>=1440px) */
+@media (min-width: 1440px) {
+  .burger {
+    display: none;
+  }
+  .nav,
+  .coffee-menu {
+    display: flex;
+    gap: 40px;
+  }
+  .offer {
+    width: 50%;
+  }
+  .offer .icon {
+    display: none;
+  }
+  .carousel-main {
+    width: 480px;
+  }
+  .aboutGallery .about-2,
+  .aboutGallery .about-3 {
+    display: grid;
+  }
+  .aboutGallery {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 40px;
+    margin: 40px 0;
+  }
+  .aboutGallery img {
+    height: auto;
+  }
+  .aboutGallery .about-1 {
+    grid-row-start: 1;
+    grid-row-end: 8;
+  }
+  .aboutGallery .about-4 {
+    grid-row-start: 2;
+    grid-row-end: 9;
+  }
+}
