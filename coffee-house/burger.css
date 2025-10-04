@@ -15,7 +15,6 @@
   --menu-width: 100%;
 }
 
-/* === BURGER BUTTON === */
 .burger {
   width: var(--size);
   height: var(--size);
