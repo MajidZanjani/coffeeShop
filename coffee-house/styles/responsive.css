@@ -89,17 +89,20 @@
     justify-self: center;
   }
   .offer {
-    padding: 30px 60px;
+    padding: 100px 60px;
   }
-  .heroTitle {
+  .hero {
+    height: 724px;
+  }
+  .hero-title {
     font-size: 72px;
     font-weight: 600;
     line-height: 105%;
   }
-  .favCoffee {
+  .fav-coffee {
     margin-top: 100px;
   }
-  .favTitle {
+  .fav-title {
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
@@ -107,21 +110,21 @@
   .carousel-arrow {
     display: flex;
   }
-  .aboutTitle {
+  .about-title {
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
     margin: 100px 0 40px 0;
   }
-  .mobileAppTitle {
+  .mobile-app-title {
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
   }
-  .mobileApp .apps {
+  .mobile-app .apps {
     flex-direction: row;
   }
-  .mobileAppImage img {
+  .mobile-app-image img {
     max-width: 630px;
   }
   footer {
@@ -134,19 +137,19 @@
     font-weight: 600;
     line-height: 125%;
   }
-  .footerMessageDark {
+  .footer-message-dark {
     display: block;
   }
   footer .social {
     margin: 40px 0 100px 0;
   }
   /* menu style */
-  .menuTitle {
+  .menu-title {
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
   }
-  .menuTitle .menuTitleDark::after {
+  .menu-title .menu-title-dark::after {
     content: "";
   }
   .menu-category {
@@ -179,8 +182,9 @@
 @media (min-width: 1441px) {
   .offer {
     width: 50%;
+    padding: 100px 100px;
+    gap: 40px;
   }
-
   .hero-button {
     position: relative;
     display: inline-flex;
@@ -216,21 +220,21 @@
   .carousel-main {
     width: 480px;
   }
-  .aboutGallery .about-2,
-  .aboutGallery .about-3 {
+  .about-gallery .about-2,
+  .about-gallery .about-3 {
     display: block;
   }
-  .aboutGallery .about-1,
-  .aboutGallery .about-2,
-  .aboutGallery .about-3,
-  .aboutGallery .about-4 {
+  .about-gallery .about-1,
+  .about-gallery .about-2,
+  .about-gallery .about-3,
+  .about-gallery .about-4 {
     display: flex;
     position: relative;
     justify-content: center;
     align-items: center;
   }
 
-  .aboutGallery {
+  .about-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
@@ -249,28 +253,28 @@
     gap: 40px;
   }
 
-  .aboutGallery img {
+  .about-gallery img {
     position: absolute;
     object-fit: cover;
     transition: transform 0.7s ease;
   }
 
-  .mobileApp {
+  .mobile-app {
     flex-direction: row;
   }
-  .mobileAppDescription {
+  .mobile-app-description {
     width: 50%;
     justify-content: center;
   }
-  .mobileAppTitle {
+  .mobile-app-title {
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
   }
-  .mobileApp .apps {
+  .mobile-app .apps {
     flex-direction: row;
   }
-  .mobileAppImage img {
+  .mobile-app-image img {
     max-width: 630px;
   }
   footer {
@@ -284,7 +288,7 @@
     margin-left: 10%;
   }
   /* menu style */
-  .menuTitle {
+  .menu-title {
     width: 800px;
   }
   .products {

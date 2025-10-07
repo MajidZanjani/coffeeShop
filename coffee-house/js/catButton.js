@@ -3,7 +3,7 @@ let currentCategory = "coffee";
 const container = document.querySelector(".products");
 const btnMore = document.getElementById("btn-more");
 const categoryButtons = document.querySelectorAll(".cat-btn");
-const modal = document.getElementById("productModal");
+const modal = document.getElementById("product-modal");
 const closeBottomBtn = document.querySelector(".close-bottom-btn");
 
 categoryButtons.forEach((button) => {

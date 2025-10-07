@@ -1,4 +1,4 @@
-const burgerBtn = document.getElementById("burgerBtn");
+const burgerBtn = document.getElementById("burger-btn");
 const sideMenu = document.getElementById("sideMenu");
 const menuLinks = document.querySelectorAll(".side-menu li");
 
