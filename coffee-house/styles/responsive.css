@@ -16,19 +16,30 @@
   header .burger-wrapper {
     display: none;
   }
-  .coffee-cup {
+  .coffee-cup.cup-menu {
     display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cup-menu {
+    text-decoration: none;
+    color: var(--text-dark);
+    justify-content: center;
+    align-items: center;
+  }
+  .coffee-cup.cup-menu img {
+    width: 20px;
+    height: 20px;
   }
   nav.main-menu {
     display: flex;
-    gap: 20px;
     justify-content: center;
     align-items: center;
   }
   nav.main-menu ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 40px;
   }
   nav.main-menu li {
     display: flex;
@@ -36,12 +47,33 @@
   }
   nav.main-menu li a {
     text-decoration: none;
+    position: relative;
     display: flex;
     align-items: center;
     font-size: 16px;
     font-weight: 600;
     line-height: 150%;
     color: var(--text-dark);
+  }
+  .cup-menu {
+    position: relative;
+    text-decoration: none;
+  }
+  nav.main-menu li a::after,
+  .cup-menu::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #333;
+    transition: all 0.5s ease;
+    transform: translateX(-50%);
+  }
+  nav.main-menu li a:hover::after,
+  .cup-menu:hover::after {
+    width: 100%;
   }
   .coffee-cup a {
     text-decoration: none;
@@ -56,22 +88,21 @@
     align-items: center;
     justify-self: center;
   }
-
-  .container {
-    padding: 0 40px;
-  }
   .offer {
-    padding: 30px 60px;
+    padding: 100px 60px;
   }
-  .heroTitle {
+  .hero {
+    height: 724px;
+  }
+  .hero-title {
     font-size: 72px;
     font-weight: 600;
     line-height: 105%;
   }
-  .favCoffee {
+  .fav-coffee {
     margin-top: 100px;
   }
-  .favTitle {
+  .fav-title {
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
@@ -79,23 +110,22 @@
   .carousel-arrow {
     display: flex;
   }
-  .aboutTitle {
+  .about-title {
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
     margin: 100px 0 40px 0;
   }
-  .mobileAppTitle {
+  .mobile-app-title {
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
   }
-  .mobileApp .apps {
+  .mobile-app .apps {
     flex-direction: row;
   }
-  .mobileAppImage img {
+  .mobile-app-image img {
     max-width: 630px;
-    margin-bottom: 100px;
   }
   footer {
     margin-bottom: 40px;
@@ -107,19 +137,19 @@
     font-weight: 600;
     line-height: 125%;
   }
-  .footerMessageDark {
+  .footer-message-dark {
     display: block;
   }
   footer .social {
     margin: 40px 0 100px 0;
   }
   /* menu style */
-  .menuTitle {
+  .menu-title {
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
   }
-  .menuTitle .menuTitleDark::after {
+  .menu-title .menu-title-dark::after {
     content: "";
   }
   .menu-category {
@@ -132,6 +162,9 @@
   }
   .product {
     margin-bottom: 0;
+  }
+  .btn-more {
+    display: none;
   }
   /* modal style */
   .modal {
@@ -149,65 +182,99 @@
 @media (min-width: 1441px) {
   .offer {
     width: 50%;
+    padding: 100px 100px;
+    gap: 40px;
   }
-  .offer .icon {
-    display: none;
+  .hero-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    background: none;
+    border: 2px solid #333;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+    transition: all 0.3s ease;
+    overflow: hidden;
   }
+  .hero-button .icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    display: inline-block;
+  }
+  .hero-button span {
+    display: inline-block;
+    transition: transform 0.5s ease;
+  }
+  .hero-button:hover span {
+    transform: translateX(-6px);
+  }
+  .hero-button:hover .icon {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
   .carousel-main {
     width: 480px;
   }
-  .aboutGallery .about-2,
-  .aboutGallery .about-3 {
+  .about-gallery .about-2,
+  .about-gallery .about-3 {
     display: block;
   }
-  .aboutGallery {
+  .about-gallery .about-1,
+  .about-gallery .about-2,
+  .about-gallery .about-3,
+  .about-gallery .about-4 {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .about-gallery {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
-    margin: 40px 0;
+    height: 1280px;
   }
-  .aboutGallery img {
+
+  .left-column {
+    display: grid;
+    grid-template-rows: 55% 40%;
+    gap: 40px;
+  }
+
+  .right-column {
+    display: grid;
+    grid-template-rows: 40% 55%;
+    gap: 40px;
+  }
+
+  .about-gallery img {
+    position: absolute;
     object-fit: cover;
-    display: block;
-    height: 100%;
+    transition: transform 0.7s ease;
   }
-  .about-1 {
-    grid-column: 1;
-    grid-row-start: 1;
-    grid-row-end: 9;
-  }
-  .about-2 {
-    grid-column: 1;
-    grid-row-start: 9;
-    grid-row-end: 11;
-  }
-  .about-3 {
-    grid-column: 2;
-    grid-row-start: 1;
-    grid-row-end: 3;
-  }
-  .about-4 {
-    grid-column: 2;
-    grid-row-start: 3;
-    grid-row-end: 11;
-  }
-  .mobileApp {
+
+  .mobile-app {
     flex-direction: row;
-    margin-top: 100px;
   }
-  .mobileAppDescription {
+  .mobile-app-description {
     width: 50%;
     justify-content: center;
   }
-  .mobileAppTitle {
+  .mobile-app-title {
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
   }
-  .mobileApp .apps {
+  .mobile-app .apps {
     flex-direction: row;
   }
-  .mobileAppImage img {
+  .mobile-app-image img {
     max-width: 630px;
   }
   footer {
@@ -221,15 +288,12 @@
     margin-left: 10%;
   }
   /* menu style */
-  .menuTitle {
+  .menu-title {
     width: 800px;
   }
   .products {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     padding: 40px 0;
-  }
-  .btn-more {
-    display: none;
   }
   /* modal style */
   .modal {
