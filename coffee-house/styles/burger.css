@@ -91,11 +91,11 @@
   text-align: center;
 }
 
-.side-menu li.coffee-cup {
+.side-menu li.side-cup {
   margin-top: 100px;
 }
 
-.coffee-cup a {
+.side-cup a {
   display: flex;
   align-items: center;
   gap: 8px;
