@@ -30,12 +30,22 @@ a {
   color: var(--text-dark);
 }
 
-/* #home-page {
-  display: block;
+/* Ensure all link states use the site's color palette on mobile/desktop */
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: var(--text-dark);
+  text-decoration: none;
 }
-#menu-page {
-  display: none;
-} */
+
+/* Remove the blue tap highlight on mobile browsers */
+a,
+button,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
 
 .inactive-cup {
   pointer-events: none;
