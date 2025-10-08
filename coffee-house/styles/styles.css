@@ -25,6 +25,11 @@ body {
   padding: 16px;
 }
 
+a {
+  text-decoration: none;
+  color: var(--text-dark);
+}
+
 /* #home-page {
   display: block;
 }
