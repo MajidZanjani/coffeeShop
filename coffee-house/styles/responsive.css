@@ -71,8 +71,8 @@
     transition: all 0.5s ease;
     transform: translateX(-50%);
   }
-  nav.main-menu li a:hover::after,
-  .cup-menu:hover::after {
+  body.desktop nav.main-menu li a:hover::after,
+  body.desktop .cup-menu:hover::after {
     width: 100%;
   }
   .coffee-cup a {
@@ -209,10 +209,10 @@
     display: inline-block;
     transition: transform 0.5s ease;
   }
-  .hero-button:hover span {
+  body.desktop .hero-button:hover span {
     transform: translateX(-6px);
   }
-  .hero-button:hover .icon {
+  body.desktop .hero-button:hover .icon {
     opacity: 1;
     transform: translateX(0);
   }

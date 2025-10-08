@@ -189,35 +189,58 @@ header {
   transition: color 1s, background 1s;
 }
 
-.carousel-arrow:hover {
+body.desktop .carousel-arrow:hover {
   background: var(--background-container);
   color: var(--text-light);
 }
 
-.carousel-arrow:hover svg path {
+body.desktop .carousel-arrow:hover svg path {
   stroke: var(--text-light);
 }
 
 .carousel-track {
-  display: flex;
-  overflow: hidden;
-  justify-content: center;
-
+  position: relative;
   width: 100%;
+  overflow: hidden;
   min-width: 0;
 }
 
+.carousel-track {
+  transition: height 400ms ease;
+}
+
 .carousel-item {
-  min-width: 100%;
-  opacity: 0;
-  transition: opacity 0.5s;
-  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: transform 600ms cubic-bezier(0.22, 0.9, 0.32, 1),
+    opacity 600ms ease;
+  will-change: transform, opacity;
 }
-.carousel-item.active {
+
+.carousel-item.position-active {
+  transform: translateX(0);
   opacity: 1;
-  display: flex;
+  z-index: 2;
+}
+
+.carousel-item.position-prev {
+  transform: translateX(-100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.carousel-item.position-next {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 1;
 }
 
 .carousel-indicators {
@@ -298,7 +321,7 @@ header {
   transform: scale(1.15);
 }
 
-.about-gallery img:hover {
+body.desktop .about-gallery img:hover {
   transform: scale(1);
 }
 
@@ -352,12 +375,12 @@ header {
   transition: background-color 1s ease, border-color 1s ease;
 }
 
-.apps a:hover {
+body.desktop .apps a:hover {
   background-color: var(--background-container);
   color: var(--text-light);
 }
 
-.apps a:hover svg path {
+body.desktop .apps a:hover svg path {
   fill: var(--text-light);
   transition: stroke 1s ease;
 }
@@ -448,7 +471,7 @@ footer .address a::after {
   background: currentColor;
 }
 
-footer .address a:hover::after {
+body.desktop footer .address a:hover::after {
   transform: scaleX(1);
 }
 
@@ -470,7 +493,7 @@ footer .social {
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.social a:hover {
+body.desktop .social a:hover {
   background-color: var(--background-body);
 }
 
@@ -478,7 +501,7 @@ footer .social {
   transition: stroke 0.3s ease;
 }
 
-.social a:hover svg path {
+body.desktop .social a:hover svg path {
   stroke: var(--border-dark);
 }
 
@@ -557,11 +580,11 @@ footer .social {
   background-color: var(--background-body);
 }
 
-.menu-category button.inactive:hover {
+body.desktop .menu-category button.inactive:hover {
   background-color: var(--background-container);
   color: var(--text-light);
 }
-button.inactive:hover img {
+body.desktop button.inactive:hover img {
   background-color: var(--background-body);
 }
 
@@ -602,7 +625,7 @@ button.inactive:hover img {
   transition: transform 0.8s ease;
   transform: scale(1.1);
 }
-.product:hover img {
+body.desktop .product:hover img {
   transform: scale(1);
 }
 
@@ -636,7 +659,7 @@ button.inactive:hover img {
   justify-content: center;
   transition: all 0.5s ease-in-out;
 }
-.btn-more:hover {
+body.desktop .btn-more:hover {
   background-color: var(--background-container);
 }
 
@@ -703,14 +726,14 @@ button.inactive:hover img {
   font-weight: 400;
   line-height: 150%;
 }
-.size:hover,
-.additive:hover {
+body.desktop .size:hover,
+body.desktop .additive:hover {
   background: var(--background-container);
   color: var(--text-light);
   border-color: var(--background-container);
 }
-.size:hover span,
-.additive:hover span {
+body.desktop .size:hover span,
+body.desktop .additive:hover span {
   background: var(--background-body);
   color: var(--text-dark);
 }

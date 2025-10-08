@@ -11,12 +11,78 @@ document.addEventListener("DOMContentLoaded", function () {
   let remaining = 7000;
 
   function showSlide(index) {
+    // normalize index
+    index = (index + items.length) % items.length;
+
+    const prevIndex = (index - 1 + items.length) % items.length;
+    const nextIndex = (index + 1) % items.length;
+
     items.forEach((item, i) => {
-      item.classList.toggle("active", i === index);
+      // remove existing position classes but keep any other classes intact
+      item.classList.remove(
+        "position-active",
+        "position-prev",
+        "position-next"
+      );
+
+      if (i === index) {
+        // active slide sits in center
+        item.classList.add("position-active");
+        item.classList.add("active");
+      } else {
+        // remove active only if it's not the active index
+        item.classList.remove("active");
+      }
+
+      if (i === prevIndex) {
+        item.classList.add("position-prev");
+      } else if (i === nextIndex) {
+        item.classList.add("position-next");
+      } else if (i !== index) {
+        // keep other non-adjacent slides off-screen to the right
+        item.classList.add("position-next");
+      }
+
       if (indicators[i]) indicators[i].classList.toggle("active", i === index);
     });
+
+    // adjust track/container height to match active slide to avoid layout jump
+    const track = document.querySelector(".carousel-track");
+    const activeItem = items[index];
+    function setTrackHeight() {
+      if (track && activeItem) {
+        const h = activeItem.offsetHeight || activeItem.scrollHeight || 0;
+        track.style.height = h + "px";
+      }
+    }
+    setTrackHeight();
+
+    // re-calc height after images load in case they were not ready yet
+    const imgs = activeItem.querySelectorAll("img");
+    imgs.forEach((img) => {
+      if (!img.complete) {
+        img.addEventListener("load", setTrackHeight, { once: true });
+      }
+    });
+
     current = index;
   }
+
+  // ensure height updates on window load/resize
+  window.addEventListener("load", () => {
+    // set initial height to first slide
+    const track = document.querySelector(".carousel-track");
+    const active = items[current];
+    if (track && active)
+      track.style.height = (active.offsetHeight || active.scrollHeight) + "px";
+  });
+
+  window.addEventListener("resize", () => {
+    const track = document.querySelector(".carousel-track");
+    const active = items[current];
+    if (track && active)
+      track.style.height = (active.offsetHeight || active.scrollHeight) + "px";
+  });
 
   function nextSlide() {
     showSlide((current + 1) % items.length);
