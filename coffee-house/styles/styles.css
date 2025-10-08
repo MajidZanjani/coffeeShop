@@ -597,6 +597,8 @@ body.desktop .social a:hover svg path {
   display: flex;
   gap: 8px;
   height: 46px;
+  align-items: center;
+  justify-content: center;
 }
 .menu-category button {
   display: flex;
