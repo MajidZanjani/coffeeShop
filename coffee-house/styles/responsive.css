@@ -9,6 +9,53 @@
   --border-light: #c1b6ad;
   --border-dark: #665f55;
 }
+@media (max-width: 236px) {
+  .app {
+    width: 100%;
+  }
+}
+@media (max-width: 355px) {
+  .hero-title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 100%;
+    margin-bottom: 20px;
+  }
+  .hero-text {
+    color: var(--text-light);
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 150%;
+  }
+  .offer button {
+    padding: 20px 40px;
+  }
+  footer {
+    padding: 40px 16px;
+    gap: 20px;
+  }
+  .footer-message span {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 100%;
+  }
+  .social a {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+  .contact h3 {
+    margin-bottom: 20px;
+  }
+  .contact span img {
+    width: 20px;
+    height: 20px;
+  }
+  .menu-category {
+    flex-direction: column;
+    margin: 80px 0;
+  }
+}
 
 @media (min-width: 381px) {
   .products {
@@ -27,81 +74,6 @@
 /* Tablet (>=769px) */
 @media (min-width: 769px) {
   /* home style */
-  header .burger-wrapper {
-    display: none;
-  }
-  .coffee-cup.cup-menu {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .cup-menu {
-    text-decoration: none;
-    color: var(--text-dark);
-    justify-content: center;
-    align-items: center;
-  }
-  .coffee-cup.cup-menu img {
-    width: 20px;
-    height: 20px;
-  }
-  nav.main-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  nav.main-menu ul {
-    list-style: none;
-    display: flex;
-    gap: 40px;
-  }
-  nav.main-menu li {
-    display: flex;
-    align-items: center;
-  }
-  nav.main-menu li a {
-    text-decoration: none;
-    position: relative;
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 150%;
-    color: var(--text-dark);
-  }
-  .cup-menu {
-    position: relative;
-    text-decoration: none;
-  }
-  nav.main-menu li a::after,
-  .cup-menu::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background-color: #333;
-    transition: all 0.5s ease;
-    transform: translateX(-50%);
-  }
-  body.desktop nav.main-menu li a:hover::after,
-  body.desktop .cup-menu:hover::after {
-    width: 100%;
-  }
-  .coffee-cup a {
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 150%;
-    color: var(--text-dark);
-  }
-  .coffee-cup a img {
-    width: 20px;
-    display: flex;
-    align-items: center;
-    justify-self: center;
-  }
   .offer {
     padding: 100px 60px;
   }
@@ -183,6 +155,81 @@
 
 /* Desktop (>=1441px) */
 @media (min-width: 1441px) {
+  header .burger-wrapper {
+    display: none;
+  }
+  .coffee-cup.cup-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cup-menu {
+    text-decoration: none;
+    color: var(--text-dark);
+    justify-content: center;
+    align-items: center;
+  }
+  .coffee-cup.cup-menu img {
+    width: 20px;
+    height: 20px;
+  }
+  nav.main-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  nav.main-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+  }
+  nav.main-menu li {
+    display: flex;
+    align-items: center;
+  }
+  nav.main-menu li a {
+    text-decoration: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 150%;
+    color: var(--text-dark);
+  }
+  .cup-menu {
+    position: relative;
+    text-decoration: none;
+  }
+  nav.main-menu li a::after,
+  .cup-menu::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #333;
+    transition: all 0.5s ease;
+    transform: translateX(-50%);
+  }
+  body.desktop nav.main-menu li a:hover::after,
+  body.desktop .cup-menu:hover::after {
+    width: 100%;
+  }
+  .coffee-cup a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 150%;
+    color: var(--text-dark);
+  }
+  .coffee-cup a img {
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+  }
   .offer {
     width: 50%;
     padding: 100px 100px;
