@@ -147,7 +147,7 @@ header {
   margin-bottom: 40px;
 }
 
-.offer button {
+.offer .hero-button {
   background-color: var(--background-body);
   border: none;
   padding: 20px 68px;
@@ -191,6 +191,10 @@ header {
   display: flex;
   align-items: center;
   position: relative;
+}
+.carousel img {
+  max-height: 480px;
+  width: auto;
 }
 
 .carousel-arrow {

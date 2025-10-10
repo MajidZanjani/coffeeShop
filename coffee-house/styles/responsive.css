@@ -57,114 +57,9 @@
   }
 }
 
-@media (min-width: 381px) {
-}
-
 /* Tablet (>=769px) */
 @media (min-width: 769px) {
   /* home style */
-  .offer {
-    padding: 100px 60px;
-  }
-  .hero {
-    height: 724px;
-  }
-  .hero-title {
-    font-size: 72px;
-    font-weight: 600;
-    line-height: 105%;
-  }
-  .fav-coffee {
-    margin-top: 100px;
-  }
-  .fav-title {
-    font-size: 60px;
-    font-weight: 600;
-    line-height: 125%;
-  }
-  .carousel-arrow {
-    display: flex;
-  }
-  .about-title {
-    font-size: 60px;
-    font-weight: 600;
-    line-height: 125%;
-    margin: 100px 0 40px 0;
-  }
-  .about-gallery img {
-    height: 100%;
-    transform: scale(1);
-  }
-  .mobile-app-title {
-    font-size: 60px;
-    font-weight: 600;
-    line-height: 125%;
-  }
-  .mobile-app .apps {
-    flex-direction: row;
-  }
-  .mobile-app-image img {
-    max-width: 630px;
-  }
-  footer {
-    margin-bottom: 20px;
-    height: 736px;
-    padding: 100px 60px;
-  }
-  .footer-message span {
-    font-size: 60px;
-    font-weight: 600;
-    line-height: 125%;
-  }
-  .footer-message-dark {
-    display: block;
-  }
-  footer .social {
-    margin: 40px 0 100px 0;
-  }
-  /* menu style */
-  .menu-title {
-    font-size: 60px;
-    font-weight: 600;
-    line-height: 125%;
-  }
-  .menu-title .menu-title-dark::after {
-    content: "";
-  }
-  .menu-category {
-    gap: 16px;
-  }
-  .products {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
-  .product {
-    margin-bottom: 0;
-  }
-  .btn-more {
-    display: none;
-  }
-  /* modal style */
-  .modal {
-    width: 688px;
-    display: flex;
-    gap: 20px;
-  }
-  .modal img {
-    display: block;
-    border-radius: 40px;
-  }
-  .size,
-  .additive {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 150%;
-  }
-}
-
-/* Desktop (>=1441px) */
-@media (min-width: 1441px) {
   header .burger-wrapper {
     display: none;
   }
@@ -227,6 +122,116 @@
   body.desktop .cup-menu:hover::after {
     width: 100%;
   }
+  .offer {
+    padding: 100px 60px;
+  }
+  .hero {
+    height: 724px;
+  }
+  .hero-title {
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 105%;
+  }
+
+  .fav-coffee {
+    margin-top: 100px;
+  }
+  .fav-title {
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 125%;
+  }
+  .carousel-arrow {
+    display: flex;
+  }
+  .about-title {
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 125%;
+    margin: 100px 0 40px 0;
+  }
+  .about-gallery img {
+    height: 100%;
+  }
+  .mobile-app {
+    flex-direction: row;
+    gap: 100px;
+  }
+  .mobile-app-description {
+    width: 50%;
+    justify-content: center;
+  }
+  .mobile-app-title {
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 125%;
+  }
+  .mobile-app .apps {
+    flex-direction: row;
+  }
+  .mobile-app-image img {
+    width: auto;
+  }
+  footer {
+    margin-bottom: 20px;
+    height: 736px;
+    padding: 100px 60px;
+  }
+  .footer-message span {
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 125%;
+  }
+  .footer-message-dark {
+    display: block;
+  }
+  footer .social {
+    margin: 40px 0 100px 0;
+  }
+  /* menu style */
+  .menu-title {
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 125%;
+  }
+  .menu-title .menu-title-dark::after {
+    content: "";
+  }
+  .menu-category {
+    gap: 16px;
+  }
+  .products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .product {
+    margin-bottom: 0;
+  }
+  .btn-more {
+    display: none;
+  }
+  /* modal style */
+  .modal {
+    width: 688px;
+    display: flex;
+    gap: 20px;
+  }
+  .modal img {
+    display: block;
+    border-radius: 40px;
+  }
+  .size,
+  .additive {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 150%;
+  }
+}
+
+/* Desktop (>=1441px) */
+@media (min-width: 1440px) {
   .coffee-cup a {
     text-decoration: none;
     font-size: 16px;
@@ -242,7 +247,7 @@
   }
   .offer {
     width: 50%;
-    padding: 100px 100px;
+    padding: 100px;
     gap: 40px;
   }
   .hero-button {
@@ -319,24 +324,6 @@
     transition: transform 0.7s ease;
   }
 
-  .mobile-app {
-    flex-direction: row;
-  }
-  .mobile-app-description {
-    width: 50%;
-    justify-content: center;
-  }
-  .mobile-app-title {
-    font-size: 60px;
-    font-weight: 600;
-    line-height: 125%;
-  }
-  .mobile-app .apps {
-    flex-direction: row;
-  }
-  .mobile-app-image img {
-    max-width: 630px;
-  }
   footer {
     height: 450px;
     display: flex;
