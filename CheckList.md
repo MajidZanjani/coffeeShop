@@ -48,7 +48,7 @@
    - [x] On `menu` page: **+4**
 
 - [x] 7. At screen widths of 768px and below on both pages, the menu and navigation buttons in the header are hidden, and a burger menu icon appears: **+4**
-- [ ] 8. Hover effects are enable on desktop devices (`Desktop` device type in DevTools) and disabled for mobile devices on both pages (`Mobile` device type in DevTools): **+4**
+- [x] 8. Hover effects are enable on desktop devices (`Desktop` device type in DevTools) and disabled for mobile devices on both pages (`Mobile` device type in DevTools): **+4**
 
 9. CSS Requirements **+10**
    - [x] For positioning images in `About` block on `home` page and products in `Menu` block on `menu` page used **Flexbox** or **Grid Layout** **+4**
@@ -89,7 +89,7 @@
    - [x] When hovering the mouse or touch-and-hold on the displayed carousel element, the time to the element switch is paused. When the mouse cursor moves out, or the hold ends, the time continues from where it stopped: **+2**
    - [x] The switch slides is accompanied by like the carousel animation (the method of animation execution is not verified): **+4**
    - [x] Manual switching in the corresponding direction is implemented by pressing left arrow button or right arrow button: **+2**
-   - [ ] For mobile devices, manual switching in the corresponding direction is additionally implemented by swiping left or right: **+2**
+   - [x] For mobile devices, manual switching in the corresponding direction is additionally implemented by swiping left or right: **+2**
    - [x] When manually switching, the progress bar state of the switched slide resets, and the progress bar of the displayed slide starts to fill: **+2**
    - [x] When switching to the right after the third element, it returns to the first. When switching to the left after the first element, it returns to the third: **+2**
 3. Categories of products on the `menu` page: **+16**
@@ -110,32 +110,3 @@
 5. Video on the `home` page: **+8**
    - [x] In the `Enjoy` block of the `home` page, a video is played in the background instead of an image, without sound and control elements, and without the ability to interact with it: **+4**
    - [x] After the video is finished, it automatically starts over: **+4**
-
-## Specifics of verifying layout
-
-- Deviation from the layout of up to 10px horizontally and vertically is allowed, provided that the visual similarity between the layout and the markup is maintained.
-- Use the [PerfectPixel](https://chrome.google.com/webstore/detail/perfectpixel-by-welldonec/dkaagdgjmgdmbnecmcefdhjekcoceebi?hl=ru) extension as a tool to check the layout's conformity with the design
-- When checking the layout using the PerfectPixel extension, make sure that the extension is set to a scale of 1, while the browser and operating system are set to a scale of 100%.
-- If the screen resolution is greater than 1440 pixels, to check for compliance with the layout, it is sufficient to center horizontally the layout or manually align it with the top-left corner guides.
-- If the screen resolution is 1440 pixels or less, use the device toolbar in Google Chrome browser in responsive mode for checking.
-- Please note that when checking the work in a window with a width of 1440 pixels, the layout may compress by approximately 17 pixels. This happens because part of the layout space is consumed by the vertical scroll (17 pixels - the standard scroll size for Google Chrome).
-- Each block and section are reviewed separately, meaning that shortcomings in the previous block do not carry over to next one. When transitioning to the review of the next block, we align it with overlaid layout.
-- Regarding text, we check its alignment and spacing relative to the block's boundaries. Text sizes are only checked for height. Deviations in word width and letter spacing when comparing the layout and the markup are not considered errors if the correct font with the specified properties is used
-- The disappearance of the two images in the `About` block of the `home` page can occur at any point between 1440px and 768px
-
-## DevTools responsiveness check details
-
-1. Open Developer Tools:
-   - Press the `F12` key on Mac or `Ctrl+Shift+i` on Windows or right-click and choose the `View Source` option in the context menu;
-   - Click on the **Toggle device toolbar** icon in the top right corner of the developer tools panel;
-   - Choose **Responsive** on the top panel.
-2. Make sure there is no vertical scrollbar in **Responsive** mode. If a scrollbar is present, remove it by following these steps:
-   - Switch the device type from `Desktop` to `Mobile` in the Device Toolbar panel;
-   - If the device type is not displayed, click on the three dots on the right in the Device Toolbar panel and select `Add device type`
-3. Set the screen width to the required value according to the task description, at which we will check the layout against the Design from Figma. If the page of the website being checked does not reformat, or if there is a white space on the right, you may need to refresh the page several times.
-4. Check the layout for compliance with the Design.
-5. For check responsiveness at different screen widths, smoothly change the screen width in DevTools from maximum (1440px) to minimum (380px), and make sure there is no horizontal scroll bar at any screen widths. If a scroll bar appears or white space appears on the right, try refreshing the page; perhaps the layout didn't update.
-6. When scaling the screen (e.g., zoom + 125%), the actual width may differ by 1-2 pixels. For example, the actual value may be 767 or 769, even though the developer tools show 768. Therefore, you should adjust to the transition point, despite the difference.
-7. Check that hover effects on interactive elements are disabled in the `Mobile` device type. To do this, click on an interactive element and ensure it does not remain in a hover state. Switch to the `Desktop` device type to verify that hover effects are enabled.
-
-![image](https://user-images.githubusercontent.com/73646765/223966120-845e2526-c54c-4611-8173-db5f9a2c3faa.png)

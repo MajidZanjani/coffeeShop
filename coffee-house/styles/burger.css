@@ -30,7 +30,7 @@
   transition: background 0.3s ease;
 }
 
-.burger:hover {
+body.desktop .burger:hover {
   background: #dcd0c4;
 }
 
@@ -77,13 +77,14 @@
   color: var(--text-dark);
   transition: right 0.45s cubic-bezier(0.25, 1, 0.5, 1);
   z-index: 1000;
-  justify-items: center;
 }
 
 .side-menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  align-items: center;
+  justify-content: center;
 }
 
 .side-menu li {
@@ -99,7 +100,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  justify-self: center;
+  justify-content: center; /* center the flex children horizontally */
+  width: 100%; /* take full width so centering is consistent with other items */
 }
 
 .side-menu a {
@@ -111,7 +113,7 @@
   transition: color 0.3s ease;
 }
 
-.side-menu a:hover {
+body.desktop .side-menu a:hover {
   color: #b0907a;
 }
 

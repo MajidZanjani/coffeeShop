@@ -9,6 +9,53 @@
   --border-light: #c1b6ad;
   --border-dark: #665f55;
 }
+@media (max-width: 236px) {
+  .app {
+    width: 100%;
+  }
+}
+@media (max-width: 355px) {
+  .hero-title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 100%;
+    margin-bottom: 20px;
+  }
+  .hero-text {
+    color: var(--text-light);
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 150%;
+  }
+  .offer button {
+    padding: 20px 40px;
+  }
+  footer {
+    padding: 40px 16px;
+    gap: 20px;
+  }
+  .footer-message span {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 100%;
+  }
+  .social a {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+  .contact h3 {
+    margin-bottom: 20px;
+  }
+  .contact span img {
+    width: 20px;
+    height: 20px;
+  }
+  .menu-category {
+    flex-direction: column;
+    margin: 80px 0;
+  }
+}
 
 /* Tablet (>=769px) */
 @media (min-width: 769px) {
@@ -71,22 +118,9 @@
     transition: all 0.5s ease;
     transform: translateX(-50%);
   }
-  nav.main-menu li a:hover::after,
-  .cup-menu:hover::after {
+  body.desktop nav.main-menu li a:hover::after,
+  body.desktop .cup-menu:hover::after {
     width: 100%;
-  }
-  .coffee-cup a {
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 150%;
-    color: var(--text-dark);
-  }
-  .coffee-cup a img {
-    width: 20px;
-    display: flex;
-    align-items: center;
-    justify-self: center;
   }
   .offer {
     padding: 100px 60px;
@@ -99,6 +133,7 @@
     font-weight: 600;
     line-height: 105%;
   }
+
   .fav-coffee {
     margin-top: 100px;
   }
@@ -116,6 +151,17 @@
     line-height: 125%;
     margin: 100px 0 40px 0;
   }
+  .about-gallery img {
+    height: 100%;
+  }
+  .mobile-app {
+    flex-direction: row;
+    gap: 100px;
+  }
+  .mobile-app-description {
+    width: 50%;
+    justify-content: center;
+  }
   .mobile-app-title {
     font-size: 60px;
     font-weight: 600;
@@ -125,10 +171,10 @@
     flex-direction: row;
   }
   .mobile-app-image img {
-    max-width: 630px;
+    width: auto;
   }
   footer {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     height: 736px;
     padding: 100px 60px;
   }
@@ -176,13 +222,32 @@
     display: block;
     border-radius: 40px;
   }
+  .size,
+  .additive {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 150%;
+  }
 }
 
 /* Desktop (>=1441px) */
-@media (min-width: 1441px) {
+@media (min-width: 1440px) {
+  .coffee-cup a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 150%;
+    color: var(--text-dark);
+  }
+  .coffee-cup a img {
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+  }
   .offer {
     width: 50%;
-    padding: 100px 100px;
+    padding: 100px;
     gap: 40px;
   }
   .hero-button {
@@ -209,10 +274,10 @@
     display: inline-block;
     transition: transform 0.5s ease;
   }
-  .hero-button:hover span {
+  body.desktop .hero-button:hover span {
     transform: translateX(-6px);
   }
-  .hero-button:hover .icon {
+  body.desktop .hero-button:hover .icon {
     opacity: 1;
     transform: translateX(0);
   }
@@ -259,24 +324,6 @@
     transition: transform 0.7s ease;
   }
 
-  .mobile-app {
-    flex-direction: row;
-  }
-  .mobile-app-description {
-    width: 50%;
-    justify-content: center;
-  }
-  .mobile-app-title {
-    font-size: 60px;
-    font-weight: 600;
-    line-height: 125%;
-  }
-  .mobile-app .apps {
-    flex-direction: row;
-  }
-  .mobile-app-image img {
-    max-width: 630px;
-  }
   footer {
     height: 450px;
     display: flex;
@@ -292,8 +339,10 @@
     width: 800px;
   }
   .products {
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    padding: 40px 0;
+    gap: 40px;
+    padding-bottom: 40px;
   }
   /* modal style */
   .modal {

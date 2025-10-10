@@ -1,5 +1,7 @@
 let allProducts = [];
 let currentCategory = "coffee";
+// track whether the full product list is currently shown on mobile
+let showingAll = false;
 const container = document.querySelector(".products");
 const btnMore = document.getElementById("btn-more");
 const categoryButtons = document.querySelectorAll(".cat-btn");
@@ -34,6 +36,8 @@ function handleCategoryChange(category) {
       allProducts = data.filter(
         (p) => p.category.toLocaleLowerCase() === category
       );
+      // reset any "show all" state when switching categories
+      showingAll = false;
       updateProductView();
     })
     .catch((error) => console.log("Error loading products: ", error));
@@ -73,14 +77,18 @@ function updateProductView() {
   container.innerHTML = "";
   btnMore.style.display = "none";
   const isMobile = screen.width <= 768;
-  if (isMobile && allProducts.length > 4) {
+  // If on mobile and we have more than 4 products, show only first 4
+  // unless the user has already clicked "More" (showingAll === true)
+  if (isMobile && allProducts.length > 4 && !showingAll) {
     renderProductList(allProducts.slice(0, 4));
     btnMore.style.display = "flex";
     btnMore.onclick = () => {
+      showingAll = true;
       renderProductList(allProducts);
       btnMore.style.display = "none";
     };
   } else {
+    // either desktop or user asked to show all
     renderProductList(allProducts);
     btnMore.style.display = "none";
   }

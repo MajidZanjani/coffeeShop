@@ -7,8 +7,6 @@
 
 html {
   scroll-behavior: smooth;
-}
-main {
   width: 100%;
   padding: 0;
   margin: 0;
@@ -19,18 +17,40 @@ body {
   background-color: #e1d4c9;
   color: #403f3d;
   line-height: 1.5;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .container {
   padding: 16px;
+  width: 100%;
+  padding: 20px;
 }
 
-/* #home-page {
-  display: block;
+/* Ensure all link states use the site's color palette on mobile/desktop */
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: var(--text-dark);
+  text-decoration: none;
 }
-#menu-page {
-  display: none;
-} */
+
+/* Remove the blue tap highlight on mobile browsers */
+a,
+button,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+  color: inherit;
+}
 
 .inactive-cup {
   pointer-events: none;
@@ -58,8 +78,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 20px;
   height: 60px;
+  width: 100%;
 }
 
 .logo img {
@@ -81,6 +101,7 @@ header {
   height: 552px;
   position: relative;
   gap: 40px;
+  width: 100%;
 }
 
 .hero-image {
@@ -102,6 +123,7 @@ header {
   position: absolute;
   margin: 60px 16px;
   gap: 40px;
+  width: auto;
 }
 
 .hero-title {
@@ -125,12 +147,12 @@ header {
   margin-bottom: 40px;
 }
 
-.offer button {
+.offer .hero-button {
   background-color: var(--background-body);
   border: none;
   padding: 20px 68px;
   border-radius: 50px;
-  width: 200px;
+  width: auto;
   height: 64px;
   cursor: pointer;
   font-size: 16px;
@@ -170,6 +192,10 @@ header {
   align-items: center;
   position: relative;
 }
+.carousel img {
+  max-height: 480px;
+  width: auto;
+}
 
 .carousel-arrow {
   background: var(--background-body);
@@ -189,35 +215,58 @@ header {
   transition: color 1s, background 1s;
 }
 
-.carousel-arrow:hover {
+body.desktop .carousel-arrow:hover {
   background: var(--background-container);
   color: var(--text-light);
 }
 
-.carousel-arrow:hover svg path {
+body.desktop .carousel-arrow:hover svg path {
   stroke: var(--text-light);
 }
 
 .carousel-track {
-  display: flex;
-  overflow: hidden;
-  justify-content: center;
-
+  position: relative;
   width: 100%;
+  overflow: hidden;
   min-width: 0;
 }
 
+.carousel-track {
+  transition: height 400ms ease;
+}
+
 .carousel-item {
-  min-width: 100%;
-  opacity: 0;
-  transition: opacity 0.5s;
-  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: transform 600ms cubic-bezier(0.22, 0.9, 0.32, 1),
+    opacity 600ms ease;
+  will-change: transform, opacity;
 }
-.carousel-item.active {
+
+.carousel-item.position-active {
+  transform: translateX(0);
   opacity: 1;
-  display: flex;
+  z-index: 2;
+}
+
+.carousel-item.position-prev {
+  transform: translateX(-100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.carousel-item.position-next {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 1;
 }
 
 .carousel-indicators {
@@ -230,15 +279,14 @@ header {
 .indicator {
   width: 40px;
   height: 4px;
-  background: #b0907a;
-  opacity: 0.5;
+  background: #403f3d;
   cursor: pointer;
-  transition: opacity 0.2s;
+  opacity: 0.3;
+  transition: opacity 1s ease;
 }
 
 .indicator.active {
   opacity: 1;
-  background: #403f3d;
 }
 
 .carousel h3 {
@@ -291,14 +339,14 @@ header {
 .about-gallery img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: 590px;
   object-fit: cover;
   transform-origin: center center;
   transition: transform 0.8s ease;
   transform: scale(1.15);
 }
 
-.about-gallery img:hover {
+body.desktop .about-gallery img:hover {
   transform: scale(1);
 }
 
@@ -352,12 +400,12 @@ header {
   transition: background-color 1s ease, border-color 1s ease;
 }
 
-.apps a:hover {
+body.desktop .apps a:hover {
   background-color: var(--background-container);
   color: var(--text-light);
 }
 
-.apps a:hover svg path {
+body.desktop .apps a:hover svg path {
   fill: var(--text-light);
   transition: stroke 1s ease;
 }
@@ -390,12 +438,13 @@ header {
 }
 
 .mobile-app-image img {
-  max-width: 348px;
+  max-width: 100%;
 }
 
 /* Footer */
 footer {
   padding: 60px 16px;
+  margin: 20px 0;
   background: var(--background-container);
   border-radius: 40px;
   color: var(--text-light);
@@ -444,12 +493,27 @@ footer .address a::after {
   width: 100%;
   transform: scaleX(0);
   transform-origin: center center;
-  transition: transform 440ms cubic-bezier(0.2, 0.9, 0.3, 1);
+  transition: 0.5s ease;
   background: currentColor;
 }
 
-footer .address a:hover::after {
+body.desktop footer .address .phone-link a:hover::after {
   transform: scaleX(1);
+}
+
+body.desktop footer .address .map-link a:hover::after {
+  animation: underline-expand 0.5s linear forwards;
+}
+@keyframes underline-expand {
+  0% {
+    transform: scaleX(0);
+  }
+  90% {
+    transform: scaleX(2);
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }
 
 footer .social {
@@ -470,7 +534,7 @@ footer .social {
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.social a:hover {
+body.desktop .social a:hover {
   background-color: var(--background-body);
 }
 
@@ -478,7 +542,7 @@ footer .social {
   transition: stroke 0.3s ease;
 }
 
-.social a:hover svg path {
+body.desktop .social a:hover svg path {
   stroke: var(--border-dark);
 }
 
@@ -502,8 +566,24 @@ footer .social {
 
 /* ------------ menu page styles ------------ */
 .menu {
-  margin: 40px;
+  margin: 40px 0;
   place-items: center;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+/* Center the load-more button on small screens */
+.btn-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 24px auto;
+  cursor: pointer;
+}
+
+.btn-more svg {
+  display: block; /* remove inline gaps */
 }
 
 .menu-title {
@@ -513,6 +593,7 @@ footer .social {
   line-height: 125%;
   color: var(--text-dark);
   margin-bottom: 40px;
+  width: 100%;
 }
 .menu-title .menu-title-dark::after {
   content: "\A";
@@ -522,9 +603,12 @@ footer .social {
   color: var(--text-accent);
 }
 .menu-category {
+  margin: 0;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   height: 46px;
+  align-items: center;
+  justify-content: center;
 }
 .menu-category button {
   display: flex;
@@ -538,9 +622,14 @@ footer .social {
   line-height: 150%;
   transition: all 0.5s ease-in-out;
 }
-.menu-category button img {
-  padding: 10px;
+.menu-category button span {
   border-radius: 50%;
+  background-color: var(--border-light);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .menu-category .inactive {
   background-color: var(--background-body);
@@ -553,34 +642,35 @@ footer .social {
   background-color: var(--background-container);
   color: var(--text-light);
 }
-.menu-category .active img {
+.menu-category .active .cat-icon {
   background-color: var(--background-body);
 }
 
-.menu-category button.inactive:hover {
+body.desktop .menu-category button.inactive:hover {
   background-color: var(--background-container);
   color: var(--text-light);
 }
-button.inactive:hover img {
+body.desktop button.inactive:hover img {
   background-color: var(--background-body);
 }
 
 .products {
   justify-items: center;
-  padding: 0 20px;
+  padding: 0;
   margin: 40px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 40px;
 }
 .product {
   border-radius: 40px;
   border: 1px solid var(--border-light);
-  margin-bottom: 40px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   width: 100%;
+  position: relative;
 }
 .product .image-wrapper {
   border-radius: 40px;
@@ -602,7 +692,7 @@ button.inactive:hover img {
   transition: transform 0.8s ease;
   transform: scale(1.1);
 }
-.product:hover img {
+body.desktop .product:hover img {
   transform: scale(1);
 }
 
@@ -619,12 +709,14 @@ button.inactive:hover img {
   font-size: 16px;
   font-weight: 400;
   line-height: 150%;
-  margin-bottom: 12px;
+  margin-bottom: 40px;
 }
 .product-description .price {
   font-size: 24px;
   font-weight: 600;
   line-height: 125%;
+  position: absolute;
+  bottom: 10px;
 }
 .btn-more {
   display: flex;
@@ -632,11 +724,12 @@ button.inactive:hover img {
   border-radius: 50%;
   width: 60px;
   height: 60px;
+  margin-bottom: 100px;
   align-items: center;
   justify-content: center;
   transition: all 0.5s ease-in-out;
 }
-.btn-more:hover {
+body.desktop .btn-more:hover {
   background-color: var(--background-container);
 }
 
@@ -703,14 +796,14 @@ button.inactive:hover img {
   font-weight: 400;
   line-height: 150%;
 }
-.size:hover,
-.additive:hover {
+body.desktop .size:hover,
+body.desktop .additive:hover {
   background: var(--background-container);
   color: var(--text-light);
   border-color: var(--background-container);
 }
-.size:hover span,
-.additive:hover span {
+body.desktop .size:hover span,
+body.desktop .additive:hover span {
   background: var(--background-body);
   color: var(--text-dark);
 }
