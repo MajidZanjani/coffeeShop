@@ -26,7 +26,6 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 window.addEventListener("resize", () => {
-  showingAll = false;
   updateProductView();
 });
 
