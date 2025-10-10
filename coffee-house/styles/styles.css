@@ -279,15 +279,14 @@ body.desktop .carousel-arrow:hover svg path {
 .indicator {
   width: 40px;
   height: 4px;
-  background: #b0907a;
-  opacity: 0.5;
+  background: #403f3d;
   cursor: pointer;
-  transition: opacity 0.2s;
+  opacity: 0.3;
+  transition: opacity 1s ease;
 }
 
 .indicator.active {
   opacity: 1;
-  background: #403f3d;
 }
 
 .carousel h3 {
