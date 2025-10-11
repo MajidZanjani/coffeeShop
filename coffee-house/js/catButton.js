@@ -79,7 +79,7 @@ function updateProductView() {
   const isMobile = screen.width <= 768;
   // If on mobile and we have more than 4 products, show only first 4
   // unless the user has already clicked "More" (showingAll === true)
-  if (isMobile && allProducts.length > 4 && !showingAll) {
+  if (isMobile && allProducts.length > 4) {
     renderProductList(allProducts.slice(0, 4));
     btnMore.style.display = "flex";
     btnMore.onclick = () => {
