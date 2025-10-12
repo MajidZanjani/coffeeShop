@@ -57,6 +57,15 @@
   }
 }
 
+/* 2 columns products */
+@media (min-width: 600px) {
+  .products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
 /* Tablet (>=769px) */
 @media (min-width: 769px) {
   /* home style */
@@ -200,11 +209,6 @@
   }
   .menu-category {
     gap: 16px;
-  }
-  .products {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
   }
   .product {
     margin-bottom: 0;
