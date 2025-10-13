@@ -18,7 +18,7 @@ body {
   color: #403f3d;
   line-height: 1.5;
   width: 100%;
-  padding: 0;
+  padding: 0 10px;
   margin: 0;
 }
 
@@ -32,6 +32,13 @@ main {
   padding: 16px;
   width: 100%;
   padding: 20px;
+}
+
+button,
+a,
+li,
+.product {
+  cursor: pointer;
 }
 
 /* Ensure all link states use the site's color palette on mobile/desktop */
