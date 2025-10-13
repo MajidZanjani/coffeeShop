@@ -34,6 +34,13 @@ main {
   padding: 20px;
 }
 
+button,
+a,
+li,
+.product {
+  cursor: pointer;
+}
+
 /* Ensure all link states use the site's color palette on mobile/desktop */
 a:link,
 a:visited,
