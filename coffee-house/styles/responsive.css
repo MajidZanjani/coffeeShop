@@ -249,10 +249,14 @@
     align-items: center;
     justify-self: center;
   }
+  .hero {
+    height: 644px;
+  }
   .offer {
-    width: 50%;
+    width: 60%;
     padding: 100px;
     gap: 40px;
+    margin: 0;
   }
   .hero-button {
     position: relative;
