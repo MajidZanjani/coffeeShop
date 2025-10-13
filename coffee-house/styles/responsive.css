@@ -14,7 +14,14 @@
     width: 100%;
   }
 }
-@media (max-width: 355px) {
+@media (max-width: 300px) {
+  .offer .hero-button {
+    padding: 20px;
+    width: 90%;
+    justify-content: center;
+  }
+}
+@media (max-width: 378px) {
   .hero-title {
     font-size: 32px;
     font-weight: 500;
@@ -132,10 +139,11 @@
     width: 100%;
   }
   .offer {
-    padding: 100px 60px;
+    padding: 100px;
+    margin: 0;
   }
   .hero {
-    height: 724px;
+    height: 644px;
   }
   .hero-title {
     font-size: 72px;
@@ -248,9 +256,6 @@
     display: flex;
     align-items: center;
     justify-self: center;
-  }
-  .hero {
-    height: 644px;
   }
   .offer {
     width: 60%;
