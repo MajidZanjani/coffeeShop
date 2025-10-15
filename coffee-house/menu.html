@@ -6,25 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>Coffee House</title>
-  <link rel="icon" type="image/svg" href="img/logo.png">
-  <link rel="stylesheet" href="./styles/styles.css">
-  <link rel="stylesheet" href="./styles/responsive.css">
-  <link rel="stylesheet" href="./styles/burger.css">
+  <link rel="icon" type="image/svg" href="./src/img/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
-  <script src="./js/burger.js" defer></script>
-  <script src="./js/catButton.js" defer></script>
-  <script src="./js/modal.js" defer></script>
-  <script src="./js/index.js" defer></script>
+  <script type="module" src="/src/main.ts"></script>
 </head>
+
 
 <body>
 
   <div class="container">
     <header>
       <div class="logo" id="logo"><a href="home.html">
-          <img class="coffee-house-logo" src="img/logo.png" alt="Coffee House Logo"></a>
+          <img class="coffee-house-logo" src="./src/img/logo.png" alt="Coffee House Logo"></a>
       </div>
       <nav class="main-menu" id="main-menu">
         <ul>
@@ -35,7 +30,7 @@
         </ul>
       </nav>
       <a href="menu.html" class="cup-menu inactive-cup">
-        <div class="coffee-cup cup-menu">Menu <img src="./img/coffee-cup.png" alt="coffee cup">
+        <div class="coffee-cup cup-menu">Menu <img src='./src/img/coffee-cup.png' alt="coffee cup">
         </div>
       </a>
 
@@ -49,7 +44,7 @@
             <li><a href="#about">About</a></li>
             <li><a href="#mobile-app">Mobile app</a></li>
             <li><a href="#footer">Contact us</a></li>
-            <li class="coffee-cup cup-menu"><a href="#">Menu <img src="./img/coffee-cup.png" alt="coffee cup"></a>
+            <li class="coffee-cup cup-menu"><a href="#">Menu <img src="./src/img/coffee-cup.png" alt="coffee cup"></a>
             </li>
           </ul>
         </nav>
@@ -68,17 +63,17 @@
 
         <div class="menu-category">
           <button class="cat-btn active" id="active-btn">
-            <span class="cat-icon"><img src="./img/icon-coffee.png" alt="coffee">
+            <span class="cat-icon"><img src="./src/img/icon-coffee.png" alt="coffee">
             </span>
             Coffee
           </button>
           <button class="cat-btn inactive">
-            <span class="cat-icon"><img src="./img/icon-tea.png" alt="tea"></span>
+            <span class="cat-icon"><img src="./src/img/icon-tea.png" alt="tea"></span>
 
             Tea
           </button>
           <button class="cat-btn inactive">
-            <span class="cat-icon"><img src="./img/icon-dessert.png" alt="dessert"></span>
+            <span class="cat-icon"><img src="./src/img/icon-dessert.png" alt="dessert"></span>
             Dessert
           </button>
         </div>
@@ -86,7 +81,7 @@
         <div class="products">
           <div class="product">
             <div class="image-wrapper">
-              <img src="./img/coffee-1.jpg" alt="Product Image">
+              <img src="./src/img/coffee-1.jpg" alt="Product Image">
             </div>
             <div class="product-description">
               <div class="title">Irish coffee</div>
@@ -96,7 +91,7 @@
           </div>
           <div class="product">
             <div class="image-wrapper">
-              <img src="./img/coffee-1.jpg" alt="Product Image">
+              <img src="./src/img/coffee-1.jpg" alt="Product Image">
             </div>
             <div class="product-description">
               <div class="title">Irish coffee</div>
@@ -106,7 +101,7 @@
           </div>
           <div class="product">
             <div class="image-wrapper">
-              <img src="./img/coffee-1.jpg" alt="Product Image">
+              <img src="./src/img/coffee-1.jpg" alt="Product Image">
             </div>
             <div class="product-description">
               <div class="title">Irish coffee</div>
@@ -116,7 +111,7 @@
           </div>
           <div class="product">
             <div class="image-wrapper">
-              <img src="./img/coffee-1.jpg" alt="Product Image">
+              <img src="./src/img/coffee-1.jpg" alt="Product Image">
             </div>
             <div class="product-description">
               <div class="title">Irish coffee</div>
@@ -143,7 +138,7 @@
       <div class="modal-overlay" id="product-modal">
         <div class="modal">
           <div class="modal-image">
-            <img src="./img//coffee-1.jpg" alt="modal image">
+            <img src="./src/img/coffee-1.jpg" alt="modal image">
           </div>
           <div class="modal-content">
             <div class="modal-title">Irish coffee</div>
@@ -232,12 +227,13 @@
         <div class="address">
           <span class="map-link"><a
               href="https://www.google.com/maps/place/8558+Columbus+Ave,+North+Hills,+CA+91343,+USA/@34.2263836,-118.4675853,17z/data=!3m1!4b1!4m6!3m5!1s0x80c290b796da70ed:0x6e668a06304b6b3f!8m2!3d34.2263792!4d-118.4650104!16s%2Fg%2F11c1ck9pw2?entry=ttu&g_ep=EgoyMDI1MTAwMS4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank" rel="noopener noreferrer"><img src="./img/pin-alt.png" alt="pin" class="icon">8558 Green
+              target="_blank" rel="noopener noreferrer"><img src="./src/img/pin-alt.png" alt="pin" class="icon">8558
+              Green
               Rd., LA</a></span>
-          <span class="phone-link"><a href="tel:16035550123"><img src="./img/phone.png" alt="phone" class="icon">+1
+          <span class="phone-link"><a href="tel:16035550123"><img src="./src/img/phone.png" alt="phone" class="icon">+1
               (603)
               555-0123</a></span>
-          <span><img src="./img/clock.png" alt="clock" class="icon">Mon-Sat: 9:00 AM - 23:00 PM</span>
+          <span><img src="./src/img/clock.png" alt="clock" class="icon">Mon-Sat: 9:00 AM - 23:00 PM</span>
         </div>
       </div>
     </footer>
