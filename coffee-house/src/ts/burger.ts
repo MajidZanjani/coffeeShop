@@ -12,12 +12,14 @@ export function burger(): void {
   burgerBtn.addEventListener("click", () => {
     burgerBtn.classList.toggle("active");
     sideMenu.classList.toggle("active");
+    document.body.classList.toggle("burget-open");
   });
 
   menuLinks.forEach((link) => {
     link.addEventListener("click", () => {
       burgerBtn.classList.toggle("active");
       sideMenu.classList.toggle("active");
+      document.body.classList.toggle("burget-open");
     });
   });
 }

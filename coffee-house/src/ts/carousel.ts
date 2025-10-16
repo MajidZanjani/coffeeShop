@@ -43,8 +43,21 @@ export function carousel(): void {
         else if (i === prevIndex) item.classList.add("position-prev");
         else item.classList.add("position-next");
 
-        if (indicators[i])
+        if (indicators[i]) {
           indicators[i].classList.toggle("active", i === index);
+          // reset fill animation
+          const fill: HTMLElement | null = indicators[i].querySelector(".fill");
+          if (fill) {
+            fill.style.transition = "none";
+            fill.style.width = "0%";
+            // force reflow to restart transition
+            void fill.offsetWidth;
+            if (i === index) {
+              fill.style.transition = "width 7s linear";
+              fill.style.width = "100%";
+            }
+          }
+        }
       });
 
       adjustTrackHeight(index);

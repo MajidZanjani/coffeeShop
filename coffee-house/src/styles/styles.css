@@ -287,15 +287,27 @@ body.desktop .carousel-arrow:hover svg path {
 
 .indicator {
   width: 40px;
-  height: 4px;
-  background: #403f3d;
+  height: 5px;
+  background: var(--border-light);
   cursor: pointer;
-  opacity: 0.3;
-  transition: opacity 1s ease;
+  overflow: hidden;
+  border-radius: 4px;
+  position: relative;
 }
 
-.indicator.active {
-  opacity: 1;
+.indicator .fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--background-container);
+  width: 0%;
+  transition: width linear;
+}
+
+.indicator.active .fill {
+  width: 100%;
+  transition: width 7s linear; /* match your auto scroll time */
 }
 
 .carousel h3 {
