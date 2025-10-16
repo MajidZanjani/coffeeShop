@@ -143,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Resume fill animation
     const activeFill = indicators[current]?.querySelector(".fill");
     if (activeFill) {
-      // resume animation for remaining time
       activeFill.style.transition = `width ${remaining}ms linear`;
       activeFill.style.width = "100%";
     }
