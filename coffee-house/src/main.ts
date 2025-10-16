@@ -5,6 +5,7 @@ import { carousel } from "./ts/carousel";
 import { catButton } from "./ts/catButton";
 import { layout } from "./ts/layout";
 import { modal } from "./ts/modal";
+import { favCoffees } from "./ts/favCoffees";
 
 const currentPage = window.location.pathname;
 if (currentPage.startsWith("/menu")) {
@@ -16,3 +17,4 @@ if (currentPage.startsWith("/menu")) {
 catButton();
 burger();
 layout();
+favCoffees();
