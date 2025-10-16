@@ -22,6 +22,9 @@ body {
   margin: 0;
   justify-items: center;
 }
+body.burger-open {
+  overflow: hidden;
+}
 
 main {
   width: 100%;
@@ -103,9 +106,9 @@ header {
 
 /* Hero Section */
 .hero {
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
   overflow: hidden;
   height: 552px;
   position: relative;
@@ -287,15 +290,28 @@ body.desktop .carousel-arrow:hover svg path {
 
 .indicator {
   width: 40px;
-  height: 4px;
-  background: #403f3d;
+  height: 5px;
+  background: var(--text-accent);
   cursor: pointer;
-  opacity: 0.3;
-  transition: opacity 1s ease;
+  overflow: hidden;
+  border-radius: 4px;
+  position: relative;
 }
 
-.indicator.active {
+.indicator .fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
   opacity: 1;
+  background: var(--background-backdrop);
+  width: 0%;
+  transition: width linear;
+}
+
+.indicator.active .fill {
+  width: 100%;
+  transition: width 7s linear; /* match your auto scroll time */
 }
 
 .carousel h3 {

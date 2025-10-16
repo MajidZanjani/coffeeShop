@@ -43,7 +43,20 @@ document.addEventListener("DOMContentLoaded", function () {
         item.classList.add("position-next");
       }
 
-      if (indicators[i]) indicators[i].classList.toggle("active", i === index);
+      if (indicators[i]) {
+        indicators[i].classList.toggle("active", i === index);
+        const fill = indicators[i].querySelector(".fill");
+        if (fill) {
+          fill.style.transition = "none";
+          fill.style.width = "0%";
+          // force reflow to restart transition
+          void fill.offsetWidth;
+          if (i === index) {
+            fill.style.transition = "width 7s linear";
+            fill.style.width = "100%";
+          }
+        }
+      }
     });
 
     // adjust track/container height to match active slide to avoid layout jump
