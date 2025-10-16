@@ -307,11 +307,16 @@ body.desktop .carousel-arrow:hover svg path {
   background: var(--background-backdrop);
   width: 0%;
   transition: width linear;
+  will-change: width;
 }
 
 .indicator.active .fill {
   width: 100%;
   transition: width 7s linear; /* match your auto scroll time */
+}
+
+.indicator .fill.paused {
+  transition: none !important;
 }
 
 .carousel h3 {
