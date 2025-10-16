@@ -123,12 +123,31 @@ document.addEventListener("DOMContentLoaded", function () {
       clearTimeout(autoScrollTimer);
       remaining -= Date.now() - lastTick;
     }
+    // Pause fill animation
+    const activeFill = indicators[current]?.querySelector(".fill");
+    if (activeFill) {
+      const computedWidth = getComputedStyle(activeFill).width;
+      const parentWidth = activeFill.parentElement.offsetWidth;
+      const percent = (parseFloat(computedWidth) / parentWidth) * 100;
+
+      activeFill.style.transition = "none";
+      activeFill.style.width = percent + "%";
+    }
   }
 
   function resumeAutoScroll() {
     if (!isPaused) return;
     isPaused = false;
     startAutoScroll(remaining > 0 ? remaining : 7000);
+
+    // Resume fill animation
+    const activeFill = indicators[current]?.querySelector(".fill");
+    if (activeFill) {
+      // resume animation for remaining time
+      activeFill.style.transition = `width ${remaining}ms linear`;
+      activeFill.style.width = "100%";
+    }
+
     remaining = 7000;
   }
 
