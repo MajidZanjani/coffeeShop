@@ -162,6 +162,9 @@
   .carousel-arrow {
     display: flex;
   }
+  .carousel-track {
+    height: 550px;
+  }
   .about-title {
     font-size: 60px;
     font-weight: 600;

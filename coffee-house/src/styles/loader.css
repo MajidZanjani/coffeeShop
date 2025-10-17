@@ -1,0 +1,52 @@
+/* Colors */
+:root {
+  --text-dark: #403f3d;
+  --text-light: #e1d4c9;
+  --text-accent: #b0907a;
+  --background-body: #e1d4c9;
+  --background-container: #665f55;
+  --background-backdrop: #403f3d;
+  --border-light: #c1b6ad;
+  --border-dark: #665f55;
+}
+
+.custom-loader-overlay {
+  position: absolute;
+  border-radius: 50px;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.custom-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.custom-loader img {
+  height: 100px;
+  width: auto;
+  animation: coffee-blink 1.5s ease-in-out infinite;
+}
+
+@keyframes coffee-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.custom-loader p {
+  font-size: 72px;
+  font-weight: 600;
+  line-height: 105%;
+  color: var(--text-accent);
+}

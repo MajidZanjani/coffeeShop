@@ -40,17 +40,6 @@ export function favCoffees(): void {
 
     // fetch from API for favorite coffees
     try {
-      // fetching products from local json file to access favorite coffee images
-      try {
-        const productsResponse = await fetch("src/data/products.json");
-        if (!productsResponse.ok) {
-          throw new Error(`products.json: ${productsResponse.status}`);
-        }
-        productsData = await productsResponse.json();
-      } catch (error) {
-        console.log("Error loading coffee image: ", error);
-      }
-
       const response = await fetch(
         "http://coffee-shop-be.eu-central-1.elasticbeanstalk.com/products/favorites"
       );
@@ -79,11 +68,7 @@ export function favCoffees(): void {
         );
 
         if (img instanceof HTMLImageElement) {
-          const product: Product | undefined = productsData.find(
-            (p: Product) => p.name === coffee.name
-          );
-          if (!product) return;
-          img.src = `src/img/${product.image}`;
+          img.src = `src/img/fav-${coffee.id}.png`;
           img.alt = coffee.name;
         }
         if (title) title.textContent = coffee.name;
