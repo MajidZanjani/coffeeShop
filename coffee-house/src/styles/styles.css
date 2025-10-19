@@ -675,6 +675,10 @@ body.desktop .social a:hover svg path {
   background-color: var(--background-body);
 }
 
+body.desktop .menu-category button.active:hover {
+  cursor: auto;
+}
+
 body.desktop .menu-category button.inactive:hover {
   background-color: var(--background-container);
   color: var(--text-light);
@@ -691,6 +695,37 @@ body.desktop button.inactive:hover img {
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
+  min-height: 600px;
+  width: 100%;
+  position: relative;
+}
+.error-element {
+  position: absolute;
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 115%;
+  color: var(--text-light);
+  text-align: center;
+  align-content: center;
+  min-height: 500px;
+  padding: 40px;
+  width: 80%;
+  background-color: var(--background-container);
+  border-radius: 20px;
+}
+.modal-err {
+  position: absolute;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 115%;
+  color: var(--text-dark);
+  text-align: center;
+  align-content: center;
+  padding: 20px;
+  width: 100%;
+  align-content: center;
+  background-color: var(--background-body);
+  border-radius: 20px;
 }
 .product {
   border-radius: 40px;
@@ -775,6 +810,14 @@ body.desktop .btn-more:hover {
   align-items: center;
   z-index: 1001;
 }
+
+.out-modal {
+  background: transparent;
+  color: var(--text-light);
+  position: relative;
+  text-align: right;
+}
+
 .modal {
   background: var(--background-body);
   color: var(--text-dark);
@@ -819,7 +862,7 @@ body.desktop .btn-more:hover {
   border: 2px solid var(--border-light);
   background: var(--background-body);
   border-radius: 40px;
-  padding: 8px;
+  padding: 6px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 400;
@@ -843,8 +886,8 @@ body.desktop .additive:hover span {
   background: var(--border-light);
   color: var(--text-dark);
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   text-align: center;
   align-content: center;
   font-size: 16px;
@@ -895,4 +938,12 @@ body.desktop .additive:hover span {
   font-weight: 600;
   line-height: 150%;
   cursor: pointer;
+}
+.modal .close-btn {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: white;
+  color: #403f3d;
+  display: block;
 }

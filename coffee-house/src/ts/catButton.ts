@@ -1,21 +1,31 @@
+import { createEl } from "./createEl";
+import { Loader } from "./loader";
+import { modalView } from "./modal";
+
 interface Size {
   size: string;
+  price: string;
+  discountPrice: string;
 }
 
 interface Additive {
   name: string;
+  price: string;
+  discountPrice: string;
 }
 
 interface Product {
+  id: number;
   name: string;
   description: string;
-  price: number;
-  image: string;
+  price: string;
+  discountPrice: string;
   category: string;
   sizes: {
     s: Size;
     m: Size;
     l: Size;
+    xl: Size;
   };
   additives: Additive[];
 }
@@ -35,11 +45,14 @@ export function catButton(): void {
   const modal: HTMLElement | null = document.getElementById(
     "product-modal"
   ) as HTMLElement;
-  const closeBottomBtn: HTMLElement | null =
-    document.querySelector<HTMLElement>(".close-bottom-btn");
 
   categoryButtons.forEach((button: HTMLElement): void => {
     button.addEventListener("click", (): void => {
+      if (
+        button.classList.contains("active") &&
+        !document.querySelector(".error-element")
+      )
+        return;
       categoryButtons.forEach((btn: HTMLElement): void => {
         btn.classList.remove("active");
         btn.classList.add("inactive");
@@ -50,7 +63,7 @@ export function catButton(): void {
       const categoryName: string | undefined = button.textContent
         ?.trim()
         .toLowerCase();
-      if (categoryName) handleCategoryChange(categoryName);
+      handleCategoryChange(categoryName);
     });
   });
 
@@ -61,45 +74,32 @@ export function catButton(): void {
   window.addEventListener("resize", updateProductView);
 
   async function handleCategoryChange(category: string): Promise<void> {
+    if (container) container.innerHTML = "";
+    const loader = new Loader(".products", false);
+    await loader.simulate(2000);
     try {
-      const response = await fetch("src/data/products.json");
+      const response = await fetch(
+        "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products"
+      );
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      const data: Product[] = await response.json();
-      allProducts = data.filter((p) => p.category.toLowerCase() === category);
+      const result = await response.json();
+      if (!result) return;
+      allProducts = result.data.filter(
+        (p: Product) => p.category.toLowerCase() === category
+      );
       showingAll = false;
       updateProductView();
     } catch (err) {
       console.error("Error loading products:", err);
+      const errorEl = createEl(
+        "div",
+        "error-element",
+        "Something went wrong. Please, refresh the page"
+      );
+      container?.appendChild(errorEl);
     }
-  }
-
-  function renderProductList(products: Product[]): void {
-    if (!container) return;
-
-    container.innerHTML = products
-      .map(
-        (p: Product): string => `
-      <div class="product">
-        <div class="image-wrapper">
-          <img src="./src/img/${p.image}" alt="${p.name}">
-        </div>
-        <div class="product-description">
-          <div class="title">${p.name}</div>
-          <div class="description">${p.description}</div>
-          <div class="price">$${p.price}</div>
-        </div>
-      </div>
-    `
-      )
-      .join("");
-
-    const newList: NodeListOf<HTMLElement> =
-      container.querySelectorAll<HTMLElement>(".product");
-    newList.forEach((p: HTMLElement): void =>
-      p.addEventListener("click", (): void => handleModalDisplay(p))
-    );
   }
 
   function updateProductView(): void {
@@ -127,64 +127,68 @@ export function catButton(): void {
     }
   }
 
-  const closeModal = (): void => {
-    modal
-      .querySelectorAll<HTMLElement>(
-        ".size-small, .size-medium, .size-large, .additive"
-      )
-      .forEach((el: HTMLElement): void => el.classList.remove("active"));
-    modal.querySelector<HTMLElement>(".size-small")?.classList.add("active");
-    document.body.style.overflow = "";
-    modal.style.display = "none";
-  };
+  function renderProductList(products: Product[]): void {
+    if (!container) return;
 
-  closeBottomBtn?.addEventListener("click", closeModal);
+    products.forEach((p, i) => {
+      const productWrap = createEl("div", "product");
+      productWrap.dataset.productId = String(p.id);
 
-  window.addEventListener("click", (e: MouseEvent): void => {
-    if ((e.target as HTMLElement) === modal) closeModal();
-  });
+      const imageWrap = createEl("div", "image-wrapper");
+      const img = document.createElement("img");
+      img.src = `../img/${p.category}-${p.id}.jpg`;
+      img.alt = p.name;
+      imageWrap.appendChild(img);
 
-  function handleModalDisplay(product: HTMLElement): void {
-    document.body.style.overflow = "hidden";
+      const productDesc = createEl("div", "product-description");
+      const producTitle = createEl("div", "title", p.name);
+      const productDescription = createEl("div", "description", p.description);
+      const productPrice = createEl("div", "price", String(p.price));
+      productDesc.append(producTitle, productDescription, productPrice);
 
-    const prodName = product.querySelector(".title")?.textContent?.trim();
-    if (!prodName) return console.warn("Product title not found");
+      productWrap.append(imageWrap, productDesc);
+      container.appendChild(productWrap);
+    });
 
-    const p = allProducts.find((prod) => prod.name === prodName);
-    if (!p) return console.warn("Product not found", prodName);
+    const newList: NodeListOf<HTMLElement> =
+      container.querySelectorAll<HTMLElement>(".product");
+    newList.forEach((p: HTMLElement): void =>
+      p.addEventListener("click", (): Promise<void> => handleModalDisplay(p))
+    );
+  }
 
-    if (!modal) return console.warn("Modal element missing");
-    modal.style.display = "flex";
+  async function sleep(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 
-    modal.querySelector<HTMLElement>(".modal-title")!.textContent = p.name;
-    modal.querySelector<HTMLElement>(".modal-description")!.textContent =
-      p.description;
+  async function handleModalDisplay(productEl: HTMLElement): Promise<void> {
+    try {
+      const response = await fetch(
+        `https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products/${Number(
+          productEl.dataset.productId
+        )}`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const result = await response.json();
+      const prod = result.data;
 
-    modal.querySelector<HTMLElement>(".size-small")!.textContent =
-      p.sizes.s.size;
-    modal.querySelector<HTMLElement>(".size-medium")!.textContent =
-      p.sizes.m.size;
-    modal.querySelector<HTMLElement>(".size-large")!.textContent =
-      p.sizes.l.size;
+      // Clear old modal before re-creating
+      const modalContainer = document.querySelector(".modal") as HTMLElement;
+      if (modalContainer) modalContainer.innerHTML = "";
 
-    modal.querySelector<HTMLElement>(
-      ".add-1"
-    )!.innerHTML = `<span>1</span> ${p.additives[0].name}`;
-    modal.querySelector<HTMLElement>(
-      ".add-2"
-    )!.innerHTML = `<span>2</span> ${p.additives[1].name}`;
-    modal.querySelector<HTMLElement>(
-      ".add-3"
-    )!.innerHTML = `<span>3</span> ${p.additives[2].name}`;
-
-    modal.querySelector<HTMLElement>(
-      ".total strong"
-    )!.innerHTML = `$${p.price}`;
-
-    const imageEl = modal.querySelector<HTMLImageElement>("img");
-    if (imageEl) {
-      imageEl.src = `./src/img/${p.image}`;
-      imageEl.alt = p.name;
+      modalView(prod);
+    } catch (err) {
+      console.error("Error loading products:", err);
+      const errorEl = createEl(
+        "div",
+        "modal-err",
+        "Something went wrong. Please, try again"
+      );
+      productEl.appendChild(errorEl);
+      await sleep(2000);
+      productEl.removeChild(errorEl);
     }
   }
 }

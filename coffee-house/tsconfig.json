@@ -6,10 +6,15 @@
     "noImplicitAny": true,
     "allowJs": true,
     "checkJs": false,
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "outDir": "dist",
-    "forceConsistentCasingInFileNames": true
+    "outDir": "./dist",
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "types": ["node"]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "webpack.config.ts"],
+  "exclude": ["webpack.config.ts"]
 }

@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>Coffee House</title>
-  <link rel="icon" type="image/svg" href="./src/img/logo.png">
+  <link rel="icon" type="image/svg" href="./img/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
-  <script type="module" src="/src/main.ts"></script>
+  <script type="module" src="./ts/main.ts"></script>
 </head>
 
 
@@ -18,8 +18,8 @@
 
   <div class="container">
     <header>
-      <div class="logo" id="logo"><a href="home.html">
-          <img class="coffee-house-logo" src="./src/img/logo.png" alt="Coffee House Logo"></a>
+      <div class="logo" id="logo"><a href="./">
+          <img class="coffee-house-logo" src="./img/logo.png" alt="Coffee House Logo"></a>
       </div>
       <nav class="main-menu" id="main-menu">
         <ul>
@@ -30,7 +30,7 @@
         </ul>
       </nav>
       <a href="menu.html" class="cup-menu inactive-cup">
-        <div class="coffee-cup cup-menu">Menu <img src='./src/img/coffee-cup.png' alt="coffee cup">
+        <div class="coffee-cup cup-menu">Menu <img src='./img/coffee-cup.png' alt="coffee cup">
         </div>
       </a>
 
@@ -44,7 +44,7 @@
             <li><a href="#about">About</a></li>
             <li><a href="#mobile-app">Mobile app</a></li>
             <li><a href="#footer">Contact us</a></li>
-            <li class="coffee-cup cup-menu"><a href="#">Menu <img src="./src/img/coffee-cup.png" alt="coffee cup"></a>
+            <li class="coffee-cup cup-menu"><a href="#">Menu <img src="./img/coffee-cup.png" alt="coffee cup"></a>
             </li>
           </ul>
         </nav>
@@ -63,63 +63,22 @@
 
         <div class="menu-category">
           <button class="cat-btn active" id="active-btn">
-            <span class="cat-icon"><img src="./src/img/icon-coffee.png" alt="coffee">
+            <span class="cat-icon"><img src="./img/icon-coffee.png" alt="coffee">
             </span>
             Coffee
           </button>
           <button class="cat-btn inactive">
-            <span class="cat-icon"><img src="./src/img/icon-tea.png" alt="tea"></span>
+            <span class="cat-icon"><img src="./img/icon-tea.png" alt="tea"></span>
 
             Tea
           </button>
           <button class="cat-btn inactive">
-            <span class="cat-icon"><img src="./src/img/icon-dessert.png" alt="dessert"></span>
+            <span class="cat-icon"><img src="./img/icon-dessert.png" alt="dessert"></span>
             Dessert
           </button>
         </div>
 
-        <div class="products">
-          <div class="product">
-            <div class="image-wrapper">
-              <img src="./src/img/coffee-1.jpg" alt="Product Image">
-            </div>
-            <div class="product-description">
-              <div class="title">Irish coffee</div>
-              <div class="description">Fragrant black coffee with Jameson Irish whiskey and whipped milk</div>
-              <div class="price">$7.00</div>
-            </div>
-          </div>
-          <div class="product">
-            <div class="image-wrapper">
-              <img src="./src/img/coffee-1.jpg" alt="Product Image">
-            </div>
-            <div class="product-description">
-              <div class="title">Irish coffee</div>
-              <div class="description">Fragrant black coffee with Jameson Irish whiskey and whipped milk</div>
-              <div class="price">$7.00</div>
-            </div>
-          </div>
-          <div class="product">
-            <div class="image-wrapper">
-              <img src="./src/img/coffee-1.jpg" alt="Product Image">
-            </div>
-            <div class="product-description">
-              <div class="title">Irish coffee</div>
-              <div class="description">Fragrant black coffee with Jameson Irish whiskey and whipped milk</div>
-              <div class="price">$7.00</div>
-            </div>
-          </div>
-          <div class="product">
-            <div class="image-wrapper">
-              <img src="./src/img/coffee-1.jpg" alt="Product Image">
-            </div>
-            <div class="product-description">
-              <div class="title">Irish coffee</div>
-              <div class="description">Fragrant black coffee with Jameson Irish whiskey and whipped milk</div>
-              <div class="price">$7.00</div>
-            </div>
-          </div>
-        </div>
+        <div class="products"></div>
 
         <div class="btn-more" id="btn-more" style="display: none">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -136,49 +95,54 @@
 
       <!-- Modal -->
       <div class="modal-overlay" id="product-modal">
-        <div class="modal">
-          <div class="modal-image">
-            <img src="./src/img/coffee-1.jpg" alt="modal image">
-          </div>
-          <div class="modal-content">
-            <div class="modal-title">Irish coffee</div>
-            <div class="modal-description">Fragrant black coffee with Jameson Irish whiskey and whipped milk</div>
+        <div class="out-modal">
+          <div class="modal">
+            <div class="modal-image">
+              <img src="./img/coffee-1.jpg" alt="modal image">
+            </div>
+            <div class="modal-content">
+              <div class="modal-title">Irish coffee</div>
+              <div class="modal-description">Fragrant black coffee with Jameson Irish whiskey and whipped milk</div>
 
-            <div class="modal-sizes">
-              <div class="size-title">Size</div>
-              <div class="size-options">
-                <button class="size size-small active"><span>S</span><size-small>200 ml</size-small></button>
-                <button class="size size-medium"><span>M</span>
-                  <size-medium>300 ml</size-medium>
-                </button>
-                <button class="size size-large"><span>L</span>
-                  <size-large>400 ml</size-large>
-                </button>
+              <div class="modal-sizes">
+                <div class="size-title">Size</div>
+                <div class="size-options">
+                  <button class="size size-small active"><span>S</span><size-small>200 ml</size-small></button>
+                  <button class="size size-medium"><span>M</span>
+                    <size-medium>300 ml</size-medium>
+                  </button>
+                  <button class="size size-large"><span>L</span>
+                    <size-large>400 ml</size-large>
+                  </button>
+                  <button class="size size-xlarge"><span>XL</span>
+                    <size-xlarge>500 ml</size-xlarge>
+                  </button>
+                </div>
               </div>
-            </div>
 
-            <div class="modal-additives">
-              <div class="add-title">Additives</div>
-              <div class="additives">
-                <button class="additive add-1"><span>1</span> Sugar</button>
-                <button class="additive add-2"><span>2</span> Cinnamon</button>
-                <button class="additive add-3"><span>3</span> Syrup</button>
+              <div class="modal-additives">
+                <div class="add-title">Additives</div>
+                <div class="additives">
+                  <button class="additive add-1"><span>1</span> Sugar</button>
+                  <button class="additive add-2"><span>2</span> Cinnamon</button>
+                  <button class="additive add-3"><span>3</span> Syrup</button>
+                </div>
               </div>
-            </div>
 
-            <div class="total">
-              <span>Total:</span>
-              <strong>$7.00</strong>
-            </div>
+              <div class="total">
+                <span>Total:</span>
+                <strong>$7.00</strong>
+              </div>
 
-            <div class="line"></div>
-            <div class="note">
-              <i>ⓘ</i>
-              <div class="note-description">The cost is not final. Download our mobile app to see the final price and
-                place your order.
-                Earn loyalty points and enjoy your favorite coffee with up to 20% discount.</div>
+              <div class="line"></div>
+              <div class="note">
+                <i>ⓘ</i>
+                <div class="note-description">The cost is not final. Download our mobile app to see the final price and
+                  place your order.
+                  Earn loyalty points and enjoy your favorite coffee with up to 20% discount.</div>
+              </div>
+              <button class="close-bottom-btn">Close</button>
             </div>
-            <button class="close-bottom-btn">Close</button>
           </div>
         </div>
       </div>
@@ -227,13 +191,13 @@
         <div class="address">
           <span class="map-link"><a
               href="https://www.google.com/maps/place/8558+Columbus+Ave,+North+Hills,+CA+91343,+USA/@34.2263836,-118.4675853,17z/data=!3m1!4b1!4m6!3m5!1s0x80c290b796da70ed:0x6e668a06304b6b3f!8m2!3d34.2263792!4d-118.4650104!16s%2Fg%2F11c1ck9pw2?entry=ttu&g_ep=EgoyMDI1MTAwMS4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank" rel="noopener noreferrer"><img src="./src/img/pin-alt.png" alt="pin" class="icon">8558
+              target="_blank" rel="noopener noreferrer"><img src="./img/pin-alt.png" alt="pin" class="icon">8558
               Green
               Rd., LA</a></span>
-          <span class="phone-link"><a href="tel:16035550123"><img src="./src/img/phone.png" alt="phone" class="icon">+1
+          <span class="phone-link"><a href="tel:16035550123"><img src="./img/phone.png" alt="phone" class="icon">+1
               (603)
               555-0123</a></span>
-          <span><img src="./src/img/clock.png" alt="clock" class="icon">Mon-Sat: 9:00 AM - 23:00 PM</span>
+          <span><img src="./img/clock.png" alt="clock" class="icon">Mon-Sat: 9:00 AM - 23:00 PM</span>
         </div>
       </div>
     </footer>

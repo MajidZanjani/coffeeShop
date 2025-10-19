@@ -6,34 +6,7 @@ interface Coffee {
   image: string;
 }
 
-interface Size {
-  size: string;
-}
-
-interface Additive {
-  name: string;
-}
-
-interface Product {
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  category: string;
-  sizes: {
-    s: Size;
-    m: Size;
-    l: Size;
-  };
-  additives: Additive[];
-}
-
-function delay(s: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, s));
-}
-
 export function favCoffees(): void {
-  let productsData: Product[];
   document.addEventListener("DOMContentLoaded", async () => {
     const carouselItems: NodeListOf<HTMLElement> =
       document.querySelectorAll(".carousel-item");
@@ -41,7 +14,7 @@ export function favCoffees(): void {
     // fetch from API for favorite coffees
     try {
       const response = await fetch(
-        "http://coffee-shop-be.eu-central-1.elasticbeanstalk.com/products/favorites"
+        "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products/favorites"
       );
 
       if (!response.ok) {
@@ -68,7 +41,7 @@ export function favCoffees(): void {
         );
 
         if (img instanceof HTMLImageElement) {
-          img.src = `src/img/fav-${coffee.id}.png`;
+          img.src = `../img/fav-${coffee.id}.png`;
           img.alt = coffee.name;
         }
         if (title) title.textContent = coffee.name;
@@ -76,7 +49,10 @@ export function favCoffees(): void {
         if (price) price.textContent = `$${Number(coffee.price).toFixed(2)}`;
       });
     } catch (error) {
-      console.log("Error loading favorite coffees: ", error);
+      console.log(
+        "Default favorite coffees show due to the fetch failor: ",
+        error
+      );
     }
   });
 }

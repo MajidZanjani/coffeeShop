@@ -4,7 +4,7 @@ import { renderCarousel } from "./carouselTemplate";
 export function carousel(): void {
   document.addEventListener("DOMContentLoaded", async () => {
     renderCarousel();
-    const loader = new Loader(".fav-coffee");
+    const loader = new Loader(".fav-coffee", false);
 
     // Simulate fetch delay
     await loader.simulate(3000);
