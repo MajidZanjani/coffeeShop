@@ -67,9 +67,7 @@ export function catButton(): void {
     });
   });
 
-  window.addEventListener("DOMContentLoaded", () => {
-    handleCategoryChange(currentCategory);
-  });
+  handleCategoryChange(currentCategory);
 
   window.addEventListener("resize", updateProductView);
 
@@ -129,6 +127,7 @@ export function catButton(): void {
 
   function renderProductList(products: Product[]): void {
     if (!container) return;
+    container.innerHTML = "";
 
     products.forEach((p, i) => {
       const productWrap = createEl("div", "product");

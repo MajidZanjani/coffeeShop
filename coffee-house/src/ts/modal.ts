@@ -36,11 +36,10 @@ function modalClose() {
   outModal.innerHTML = "";
   overlay.style.display = "none";
   overlay.classList.remove("active");
+  document.body.style.overflow = "scroll";
 }
 
 export function modalView(product: Product): void {
-  console.log(product);
-
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") modalClose();
   });
@@ -215,6 +214,7 @@ export function modalView(product: Product): void {
   if (overlay) {
     overlay.classList.add("active");
     overlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
   }
 
   // === CLOSE EVENTS ===

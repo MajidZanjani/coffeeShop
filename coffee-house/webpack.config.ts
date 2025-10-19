@@ -55,7 +55,10 @@ const config: Configuration = {
       filename: "menu.html",
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: "src/img", to: "img" }],
+      patterns: [
+        { from: "src/img", to: "img" },
+        { from: "src/components", to: "components" },
+      ],
     }),
   ],
   devServer: {
