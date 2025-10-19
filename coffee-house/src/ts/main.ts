@@ -6,7 +6,7 @@ import { catButton } from "./catButton";
 import { layout } from "./layout";
 import { favCoffees } from "./favCoffees";
 
-function loadFragment(targetId: string, file: string): Promise<void> {
+async function loadFragment(targetId: string, file: string): Promise<void> {
   return fetch(file)
     .then((res) => res.text())
     .then((html) => {
@@ -14,6 +14,10 @@ function loadFragment(targetId: string, file: string): Promise<void> {
       if (el) el.innerHTML = html;
     });
 }
+
+const isHomePage =
+  window.location.pathname.endsWith("index.html") ||
+  window.location.pathname === "/";
 
 document.addEventListener("DOMContentLoaded", async () => {
   await loadFragment("header", "/components/header.html");
@@ -23,7 +27,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   layout();
 
   const isMenuPage = window.location.href.includes("menu.html");
-
   if (isMenuPage) {
     const menuLink = document.querySelector(".cup-menu");
     const sideLink = document.querySelector(".side-cup");
@@ -35,12 +38,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       sideLink.classList.add("inactive-cup");
       sideLink.removeAttribute("href");
     }
-  }
-
-  if (isMenuPage) {
     catButton();
-  } else {
-    carousel();
-    favCoffees();
   }
 });
+
+if (isHomePage) {
+  carousel();
+  favCoffees();
+}

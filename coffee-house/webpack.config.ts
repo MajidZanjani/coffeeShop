@@ -54,6 +54,21 @@ const config: Configuration = {
       template: "./src/menu.html",
       filename: "menu.html",
     }),
+    // Cart Page
+    new HtmlWebpackPlugin({
+      template: "./src/cart.html",
+      filename: "cart.html",
+    }),
+    // login page
+    new HtmlWebpackPlugin({
+      template: "./src/login.html",
+      filename: "login.html",
+    }),
+    // Registration Page
+    new HtmlWebpackPlugin({
+      template: "./src/register.html",
+      filename: "register.html",
+    }),
     new CopyWebpackPlugin({
       patterns: [
         { from: "src/img", to: "img" },

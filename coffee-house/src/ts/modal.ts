@@ -1,3 +1,4 @@
+import { renderCartEl } from "./cart";
 import { createEl } from "./createEl";
 import { Loader } from "./loader";
 
@@ -28,6 +29,16 @@ interface Product {
     xxl: Size;
   };
   additives: Additive[];
+}
+
+interface CartItem {
+  id: number;
+  name: string;
+  price: string;
+  size: string;
+  additives: string[];
+  quantity: number;
+  image: string;
 }
 
 function modalClose() {
@@ -132,10 +143,60 @@ export function modalView(product: Product): void {
   );
   totalWrap.append(totalLabel, totalValue);
 
+  // Local Storage functions *************************
+  function getCart(): CartItem[] {
+    const cart = localStorage.getItem("cart");
+    return cart ? JSON.parse(cart) : [];
+  }
+  function saveCart(cart: CartItem[]): void {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  // Add to Cart
   const addToCart = createEl("button", "close-bottom-btn", "Add to cart");
   addToCart.addEventListener("click", () => {
-    const overlay = document.querySelector(".modal-overlay") as HTMLElement;
-    overlay?.classList.remove("active");
+    const activeSizeEl = modalContainer.querySelector(".size.active");
+
+    const selectedSize = activeSizeEl
+      ? activeSizeEl.className.match(/size-(\w+)/)?.[1]?.toUpperCase() ||
+        "DEFAULT"
+      : "DEFAULT";
+
+    const activeAdditives = Array.from(
+      modalContainer.querySelectorAll(".additive.active")
+    ).map((btn) => btn.textContent?.replace(/^\d+\s*/, "") || "");
+
+    const totalPrice = Number(
+      totalEl.textContent?.replace("$", "") || product.price
+    );
+
+    const cart = getCart();
+
+    const existingItems = cart.find(
+      (item) =>
+        item.id === product.id &&
+        item.size === selectedSize &&
+        JSON.stringify(item.additives) === JSON.stringify(activeAdditives)
+    );
+
+    if (existingItems) {
+      existingItems.quantity += 1;
+    } else {
+      const newItem: CartItem = {
+        id: product.id,
+        name: product.name,
+        price: String(totalPrice),
+        size: selectedSize,
+        additives: activeAdditives,
+        quantity: 1,
+        image: `../img/${product.category}-${product.id}.jpg`,
+      };
+      cart.push(newItem);
+    }
+
+    saveCart(cart);
+    modalClose();
+    renderCartEl();
   });
 
   modalContent.append(
