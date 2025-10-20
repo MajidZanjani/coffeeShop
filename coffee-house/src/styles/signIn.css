@@ -83,12 +83,21 @@ body {
   margin-top: 40px;
 }
 
-.sign-in-btn:hover {
+.sign-in-btn:hover,
+.register-btn:hover {
   background-color: var(--background-container);
   color: var(--text-light);
 }
 
 /* Registration page layout */
+
+.disabled-btn {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: var(--text-accent);
+}
+
 .register-wrap,
 .address-wrap {
   display: flex;
@@ -135,6 +144,52 @@ body {
   height: 8px;
   border-radius: 50%;
   background-color: var(--background-container);
+}
+
+/* Style for select dropdowns and number inputs */
+.form-input {
+  padding: 0 12px;
+  border: 1px solid var(--border-light);
+  background-color: var(--background-body);
+  border-radius: 12px;
+  height: 58px;
+  width: 100%;
+  font-size: 16px;
+  appearance: none; /* Removes default arrow style for consistency */
+}
+
+.form-input:focus {
+  background-color: var(--background-body);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--text-accent);
+}
+
+/* Optional: custom arrow for select dropdowns */
+select.form-input {
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%23403f3d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px 16px;
+}
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,...");
+  pointer-events: none;
+}
+
+.select-wrapper {
+  width: 100%;
+}
+
+.hide {
+  display: none;
+}
+
+.error {
+  border: 2px solid red !important;
 }
 
 /* Small screens (phones) */
