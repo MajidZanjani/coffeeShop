@@ -1,6 +1,5 @@
-import { renderCartEl } from "./cart";
+import { getCart, saveCart } from "./cart";
 import { createEl } from "./createEl";
-import { Loader } from "./loader";
 
 interface Size {
   size: string;
@@ -143,16 +142,7 @@ export function modalView(product: Product): void {
   );
   totalWrap.append(totalLabel, totalValue);
 
-  // Local Storage functions *************************
-  function getCart(): CartItem[] {
-    const cart = localStorage.getItem("cart");
-    return cart ? JSON.parse(cart) : [];
-  }
-  function saveCart(cart: CartItem[]): void {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
-
-  // Add to Cart
+  // Add to Cart ******************
   const addToCart = createEl("button", "close-bottom-btn", "Add to cart");
   addToCart.addEventListener("click", () => {
     const activeSizeEl = modalContainer.querySelector(".size.active");
@@ -170,7 +160,13 @@ export function modalView(product: Product): void {
       totalEl.textContent?.replace("$", "") || product.price
     );
 
+    const cartNavEl = document.querySelector(".cart-el");
     const cart = getCart();
+    if (cart) {
+      cartNavEl?.classList.add("active");
+      const cartItemCount = document.querySelector(".cart-item-count");
+      if (cartItemCount) cartItemCount.textContent = String(cart.length);
+    }
 
     const existingItems = cart.find(
       (item) =>
@@ -195,8 +191,9 @@ export function modalView(product: Product): void {
     }
 
     saveCart(cart);
+    getCart();
+
     modalClose();
-    renderCartEl();
   });
 
   modalContent.append(

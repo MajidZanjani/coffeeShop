@@ -61,8 +61,8 @@ const config: Configuration = {
     }),
     // login page
     new HtmlWebpackPlugin({
-      template: "./src/login.html",
-      filename: "login.html",
+      template: "./src/signIn.html",
+      filename: "signIn.html",
     }),
     // Registration Page
     new HtmlWebpackPlugin({

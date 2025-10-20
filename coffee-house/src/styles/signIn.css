@@ -1,0 +1,191 @@
+/* Colors */
+:root {
+  --text-dark: #403f3d;
+  --text-light: #e1d4c9;
+  --text-accent: #b0907a;
+  --background-body: #e1d4c9;
+  --background-container: #665f55;
+  --background-backdrop: #403f3d;
+  --border-light: #c1b6ad;
+  --border-dark: #665f55;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  background-color: var(--background-body);
+}
+
+.sign-in-container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 40px;
+  margin-bottom: 100px;
+  padding: 0 16px;
+}
+
+.sign-in-header {
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 125%;
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.form {
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 900px;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-wrap,
+.password-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  padding: 0 12px;
+  border: 1px solid var(--border-light);
+  background-color: var(--background-body);
+  border-radius: 12px;
+  height: 58px;
+  width: 100%;
+  font-size: 16px;
+}
+
+.form input:focus {
+  background-color: var(--background-body);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--text-accent);
+}
+
+.sign-in-btn,
+.register-btn {
+  height: 44px;
+  border: 1px solid var(--border-dark);
+  border-radius: 20px;
+  background-color: var(--background-body);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 150%;
+  width: 200px;
+  transition: 0.3s all ease-in-out;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+.sign-in-btn:hover {
+  background-color: var(--background-container);
+  color: var(--text-light);
+}
+
+/* Registration page layout */
+.register-wrap,
+.address-wrap {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  width: 100%;
+}
+
+.city-wrap,
+.street-wrap,
+.house-wrap,
+.payment-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.payment-wrap {
+  gap: 18px;
+}
+
+.radio input {
+  display: none;
+}
+
+.custom-radio {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--border-dark);
+  background-color: var(--background-body);
+  display: inline-block;
+  margin-right: 8px;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio input:checked + .custom-radio::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--background-container);
+}
+
+/* Small screens (phones) */
+@media (max-width: 600px) {
+  .sign-in-header {
+    font-size: 36px;
+  }
+
+  .register-wrap,
+  .address-wrap {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form {
+    align-items: stretch;
+  }
+
+  .form input {
+    height: 48px;
+    font-size: 15px;
+  }
+
+  .sign-in-btn {
+    width: 100%;
+  }
+
+  .payment-wrap {
+    gap: 10px;
+  }
+}
+
+/* Medium screens (tablets) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .sign-in-header {
+    font-size: 48px;
+  }
+
+  .register-wrap,
+  .address-wrap {
+    flex-wrap: wrap;
+  }
+
+  .form input {
+    height: 52px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 901px) {
+  .form {
+    max-width: 900px;
+  }
+}

@@ -5,6 +5,8 @@ import { carousel } from "./carousel";
 import { catButton } from "./catButton";
 import { layout } from "./layout";
 import { favCoffees } from "./favCoffees";
+import { getCart, renderCartEl } from "./cart";
+import { renderLogin } from "./login";
 
 async function loadFragment(targetId: string, file: string): Promise<void> {
   return fetch(file)
@@ -40,9 +42,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     catButton();
   }
+
+  if (!isHomePage) getCart();
 });
 
 if (isHomePage) {
   carousel();
   favCoffees();
 }
+
+const isCartPage = window.location.href.includes("cart.html");
+if (isCartPage) {
+  renderCartEl();
+}
+
+const isSignInPage = window.location.href.includes("signIn.html");
+if (isSignInPage) renderLogin();
