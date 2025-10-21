@@ -61,7 +61,7 @@ async function renderItems(): Promise<void> {
 
       const cartItemDescEl = createEl("div", "cart-item-desc");
       const cartItemNameEl = createEl("div", "cart-item-name", cartItem.name);
-      let description = cartItem.size;
+      let description = `Size "${cartItem.size}"`;
       if (cartItem.additives) {
         cartItem.additives.forEach((additive) => {
           description += `, ${additive}`;

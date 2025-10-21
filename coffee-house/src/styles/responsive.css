@@ -375,4 +375,7 @@
   .modal {
     width: 800px;
   }
+  .modal .total {
+    grid-template-columns: 3fr 1fr 1fr;
+  }
 }

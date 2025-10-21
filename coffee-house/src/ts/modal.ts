@@ -135,12 +135,19 @@ export function modalView(product: Product): void {
   // === Total ===
   const totalWrap = createEl("div", "total");
   const totalLabel = createEl("span", "", "Total:");
-  const totalValue = createEl(
+
+  const totalDiscountedValue = createEl(
     "strong",
     "",
-    `$${Number(product.discountPrice || product.price).toFixed(2)}`
+    `$${Number(product.discountPrice).toFixed(2)}`
   );
-  totalWrap.append(totalLabel, totalValue);
+
+  const totalValue = createEl(
+    "strong",
+    "strike",
+    `$${Number(product.price).toFixed(2)}`
+  );
+  totalWrap.append(totalLabel, totalValue, totalDiscountedValue);
 
   // Add to Cart ******************
   const addToCart = createEl("button", "close-bottom-btn", "Add to cart");

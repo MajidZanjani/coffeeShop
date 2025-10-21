@@ -795,7 +795,10 @@ body.desktop .product:hover img {
   line-height: 125%;
   position: absolute;
   bottom: 10px;
+  display: flex;
+  gap: 10px;
 }
+
 .btn-more {
   display: flex;
   border: 1px solid var(--border-dark);
@@ -920,12 +923,19 @@ body.desktop .additive:hover span {
   color: var(--text-dark);
 }
 .modal .total {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
   font-size: 24px;
   font-weight: 600;
   line-height: 125%;
   margin-top: 20px;
+  width: 100%;
+}
+.modal .total span {
+  justify-self: start;
+}
+.modal .total strong {
+  justify-self: end;
 }
 .modal .line {
   height: 2px;

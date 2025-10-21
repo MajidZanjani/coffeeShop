@@ -30,6 +30,8 @@ interface Product {
   additives: Additive[];
 }
 
+const user = localStorage.getItem("user");
+
 export function catButton(): void {
   let allProducts: Product[] = [];
   let currentCategory: string = "coffee";
@@ -142,8 +144,22 @@ export function catButton(): void {
       const productDesc = createEl("div", "product-description");
       const producTitle = createEl("div", "title", p.name);
       const productDescription = createEl("div", "description", p.description);
-      const productPrice = createEl("div", "price", String(p.price));
-      productDesc.append(producTitle, productDescription, productPrice);
+      const productPrice = createEl("div", "price");
+      const normalPeiceEl = createEl("div", "normal", `$${p.price}`);
+      if (p.discountPrice && user) {
+        const discountPriceEl = createEl(
+          "div",
+          "discount",
+          `$${p.discountPrice}`
+        );
+        normalPeiceEl.classList.add("strike");
+        productPrice.append(discountPriceEl);
+        productPrice.append(normalPeiceEl);
+        productDesc.append(producTitle, productDescription, productPrice);
+      } else {
+        productPrice.append(normalPeiceEl);
+        productDesc.append(producTitle, productDescription, productPrice);
+      }
 
       productWrap.append(imageWrap, productDesc);
       container.appendChild(productWrap);
