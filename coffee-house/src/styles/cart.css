@@ -82,27 +82,14 @@
   justify-self: end;
 }
 
-.cart-total {
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 125%;
-}
-
-.cart-total-title {
-  padding-left: 48px;
-}
-
-.cart-total-price {
-  justify-self: end;
+.cart-item-price span {
+  margin-left: 10px;
 }
 
 .cart-buttons {
   width: 100%;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
   gap: 40px;
   justify-content: center;
 }
@@ -120,8 +107,45 @@
   cursor: pointer;
   margin-top: 40px;
 }
-.cart-confirm {
+
+.cart-footer {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.cart-total,
+.cart-address,
+.cart-pay-method {
+  width: 100%;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 125%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.cart-total-title,
+.cart-address-title,
+.cart-method-title {
+  justify-self: start;
+  padding-left: 48px;
+}
+
+.cart-total-price,
+.cart-address-text,
+.cart-method-text {
+  justify-self: end;
+}
+
+.show-user {
   display: none;
+}
+
+.strike {
+  text-decoration: line-through;
+  color: var(--border-light);
 }
 
 @media (max-width: 800px) {
@@ -136,7 +160,11 @@
   .cart-item-name,
   .cart-item-price,
   .cart-total-title,
-  .cart-total-price {
+  .cart-total-price,
+  .cart-address-title,
+  .cart-method-title,
+  .cart-address-text,
+  .cart-method-text {
     font-size: 16px;
     font-weight: 600;
     line-height: 125%;
@@ -157,6 +185,9 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+  }
+  .cart-items {
+    margin-bottom: 20px;
   }
   .cart-item {
     grid-template-columns: auto auto auto;

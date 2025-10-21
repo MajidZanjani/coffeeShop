@@ -258,12 +258,17 @@ export function registerFormInit() {
     registerUser(user).then((result) => {
       if (result.success) {
         console.log("User registered:", result.data);
+        registerErrorEl.innerHTML = `✅ Registration successful! Redirecting to login page...`;
+        registerErrorEl.style.display = "flex";
+        registerErrorEl.style.color = "green";
         form.reset();
         streetSelect.innerHTML = '<option value="">Select Street</option>';
-        registerErrorEl.style.display = "none";
+        setTimeout(() => {
+          window.location.href = "signIn.html";
+        }, 3000);
       } else {
         console.log("Error happened:", result.error);
-        registerErrorEl.innerHTML = `Registration failed: ${result.error}`;
+        registerErrorEl.innerHTML = `⚠️ Registration failed: ${result.error}`;
         registerErrorEl.style.display = "flex";
       }
     });
