@@ -924,7 +924,7 @@ body.desktop .additive:hover span {
 }
 .modal .total {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   font-size: 24px;
   font-weight: 600;
   line-height: 125%;

@@ -32,6 +32,21 @@ interface Product {
 
 const user = localStorage.getItem("user");
 
+export function refreshCartIconCount(): void {
+  const cartNavEl = document.querySelector(".cart-el");
+  const cartJSON = localStorage.getItem("cart");
+  if (cartJSON) {
+    cartNavEl?.classList.add("active");
+    const cart = JSON.parse(cartJSON);
+    const cartItemCount = document.querySelector(
+      ".cart-item-count"
+    ) as HTMLElement;
+    if (cartItemCount) {
+      cartItemCount.textContent = String(cart.length);
+    }
+  }
+}
+
 export function catButton(): void {
   let allProducts: Product[] = [];
   let currentCategory: string = "coffee";
@@ -77,6 +92,7 @@ export function catButton(): void {
     if (container) container.innerHTML = "";
     const loader = new Loader(".products", false);
     await loader.simulate(2000);
+    refreshCartIconCount();
     try {
       const response = await fetch(
         "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products"

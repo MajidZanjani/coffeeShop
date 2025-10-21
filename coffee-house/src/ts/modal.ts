@@ -1,5 +1,7 @@
 import { getCart, saveCart } from "./cart";
+import { refreshCartIconCount } from "./catButton";
 import { createEl } from "./createEl";
+import { Loader } from "./loader";
 
 interface Size {
   size: string;
@@ -31,14 +33,17 @@ interface Product {
 }
 
 interface CartItem {
+  cartId: string;
   id: number;
   name: string;
   price: string;
+  discountPrice: string;
   size: string;
   additives: string[];
-  quantity: number;
   image: string;
 }
+
+const user = localStorage.getItem("user");
 
 function modalClose() {
   const overlay = document.querySelector(".modal-overlay") as HTMLElement;
@@ -47,6 +52,19 @@ function modalClose() {
   overlay.style.display = "none";
   overlay.classList.remove("active");
   document.body.style.overflow = "scroll";
+}
+
+async function addCartItemCount() {
+  const loader = new Loader(".products", false);
+  await loader.simulate(2000);
+  const cartNavEl = document.querySelector(".cart-el");
+  const cartJSON = localStorage.getItem("cart");
+  if (cartJSON) {
+    cartNavEl?.classList.add("active");
+    const cartItemCount = document.querySelector(".cart-item-count");
+    if (cartItemCount)
+      cartItemCount.textContent = String(JSON.parse(cartJSON).length);
+  }
 }
 
 export function modalView(product: Product): void {
@@ -136,18 +154,23 @@ export function modalView(product: Product): void {
   const totalWrap = createEl("div", "total");
   const totalLabel = createEl("span", "", "Total:");
 
-  const totalDiscountedValue = createEl(
-    "strong",
-    "",
-    `$${Number(product.discountPrice).toFixed(2)}`
-  );
-
   const totalValue = createEl(
     "strong",
-    "strike",
+    "normal",
     `$${Number(product.price).toFixed(2)}`
   );
-  totalWrap.append(totalLabel, totalValue, totalDiscountedValue);
+  if (user) {
+    const totalDiscountedValue = createEl(
+      "strong",
+      "discount",
+      `$${Number(product.discountPrice).toFixed(2)}`
+    );
+    totalValue.classList.add("strike");
+    totalWrap.append(totalLabel, totalValue, totalDiscountedValue);
+    totalWrap.style.gridTemplateColumns = "2fr 1fr 1fr";
+  } else {
+    totalWrap.append(totalLabel, totalValue);
+  }
 
   // Add to Cart ******************
   const addToCart = createEl("button", "close-bottom-btn", "Add to cart");
@@ -163,43 +186,40 @@ export function modalView(product: Product): void {
       modalContainer.querySelectorAll(".additive.active")
     ).map((btn) => btn.textContent?.replace(/^\d+\s*/, "") || "");
 
+    const totalEl = modalContainer.querySelector(".normal") as HTMLElement;
+    const totalDiscountEl = modalContainer.querySelector(
+      ".discount"
+    ) as HTMLElement;
+
     const totalPrice = Number(
       totalEl.textContent?.replace("$", "") || product.price
     );
+    let totalDiscountPrice = totalPrice;
+    if (totalDiscountEl) {
+      totalDiscountPrice = Number(
+        totalDiscountEl.textContent?.replace("$", "")
+      );
+    }
 
-    const cartNavEl = document.querySelector(".cart-el");
     const cart = getCart();
-    if (cart) {
-      cartNavEl?.classList.add("active");
-      const cartItemCount = document.querySelector(".cart-item-count");
-      if (cartItemCount) cartItemCount.textContent = String(cart.length);
-    }
+    addCartItemCount();
 
-    const existingItems = cart.find(
-      (item) =>
-        item.id === product.id &&
-        item.size === selectedSize &&
-        JSON.stringify(item.additives) === JSON.stringify(activeAdditives)
-    );
+    const cartId = String(Date.now());
 
-    if (existingItems) {
-      existingItems.quantity += 1;
-    } else {
-      const newItem: CartItem = {
-        id: product.id,
-        name: product.name,
-        price: String(totalPrice),
-        size: selectedSize,
-        additives: activeAdditives,
-        quantity: 1,
-        image: `../img/${product.category}-${product.id}.jpg`,
-      };
-      cart.push(newItem);
-    }
+    const newItem: CartItem = {
+      cartId: cartId,
+      id: product.id,
+      name: product.name,
+      price: String(totalPrice),
+      discountPrice: String(totalDiscountPrice),
+      size: selectedSize,
+      additives: activeAdditives,
+      image: `../img/${product.category}-${product.id}.jpg`,
+    };
+    cart.push(newItem);
 
     saveCart(cart);
     getCart();
-
     modalClose();
   });
 
@@ -218,10 +238,16 @@ export function modalView(product: Product): void {
   // === Attach Events ===
   const sizes = modalContainer.querySelectorAll<HTMLElement>(".size");
   const additives = modalContainer.querySelectorAll<HTMLElement>(".additive");
-  const totalEl = modalContainer.querySelector(".total strong") as HTMLElement;
+  const totalEl = modalContainer.querySelector(".normal") as HTMLElement;
+  const totalDiscountEl = modalContainer.querySelector(
+    ".discount"
+  ) as HTMLElement;
 
+  // Calculate on each select/unselect
   function calculateTotal(): void {
-    let basePrice = parseFloat(product.discountPrice || product.price);
+    let basePrice = parseFloat(product.price);
+    let baseDiscountPrice =
+      parseFloat(product.discountPrice) || parseFloat(product.price);
 
     const activeSizeEl = modalContainer.querySelector(".size.active");
     if (activeSizeEl) {
@@ -237,11 +263,14 @@ export function modalView(product: Product): void {
 
       const sizeOption = product.sizes[sizeKey];
       if (sizeOption) {
-        basePrice = parseFloat(sizeOption.discountPrice || sizeOption.price);
+        baseDiscountPrice =
+          parseFloat(sizeOption.discountPrice) || parseFloat(sizeOption.price);
+        basePrice = parseFloat(sizeOption.price);
       }
     }
 
     let additivePrice = 0;
+    let additiveDiscountPrice = 0;
     const activeAdditives = Array.from(
       modalContainer.querySelectorAll(".additive.active")
     ).map((btn) => btn.textContent?.replace(/^\d+\s*/, "") || "");
@@ -249,12 +278,18 @@ export function modalView(product: Product): void {
     activeAdditives.forEach((name) => {
       const add = product.additives.find((a) => a.name === name);
       if (add) {
-        additivePrice += parseFloat(add.discountPrice || add.price);
+        additiveDiscountPrice = add.discountPrice
+          ? additiveDiscountPrice + parseFloat(add.discountPrice)
+          : additiveDiscountPrice;
+        additivePrice += parseFloat(add.price);
       }
     });
 
     const total = basePrice + additivePrice;
-    totalEl.textContent = `$${total.toFixed(2)}`;
+    const totalDiscount = baseDiscountPrice + additiveDiscountPrice;
+    if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+    if (totalDiscountEl)
+      totalDiscountEl.textContent = `$${totalDiscount.toFixed(2)}`;
   }
 
   sizes.forEach((size) => {

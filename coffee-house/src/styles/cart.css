@@ -41,8 +41,12 @@
 .cart-item-trash {
   height: 24px;
   width: 24px;
+  cursor: pointer;
+  transition: 0.3s all ease;
 }
-
+.cart-item-trash:hover {
+  transform: scale(1.5);
+}
 .cart-item-image {
   width: 100px;
   height: 100px;
@@ -139,6 +143,18 @@
   justify-self: end;
 }
 
+.cart-total-price {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: end;
+  column-gap: 12px;
+  box-sizing: border-box;
+}
+
+.discount-total {
+  justify-self: end;
+}
+
 .show-user {
   display: none;
 }
@@ -146,6 +162,15 @@
 .strike {
   text-decoration: line-through;
   color: var(--border-light);
+}
+
+.loader-show {
+  display: block;
+  height: 400px;
+}
+.loader-hide {
+  display: none;
+  height: 0;
 }
 
 @media (max-width: 800px) {
