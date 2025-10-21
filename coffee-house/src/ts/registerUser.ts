@@ -11,17 +11,20 @@ export async function registerUser(user: {}) {
       }
     );
 
+    const data = await response.json().catch(() => ({}));
+
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      console.error("Registration failed: ", errorData);
-      throw new Error(`Error ${response.status}: ${response.statusText}`);
+      // Return the error message from server if available, or fallback to status
+      const errorMessage =
+        data.message || `Error ${response.status}: ${response.statusText}`;
+      console.error("Registration failed: ", errorMessage);
+      return { success: false, error: errorMessage };
     }
 
-    const data = await response.json();
     console.log("Registration successful: ", data);
-    return data;
-  } catch (error) {
-    console.log("Registration failed. Server error: ", error);
-    return null;
+    return { success: true, data };
+  } catch (error: any) {
+    console.error("Registration failed. Server error: ", error);
+    return { success: false, error: error?.message || "Unknown server error" };
   }
 }

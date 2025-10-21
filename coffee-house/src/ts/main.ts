@@ -7,6 +7,7 @@ import { layout } from "./layout";
 import { favCoffees } from "./favCoffees";
 import { getCart, renderCartEl } from "./cart";
 import { registerFormInit } from "./registerForm";
+import { loginFormInit } from "./loginForm";
 
 async function loadFragment(targetId: string, file: string): Promise<void> {
   return fetch(file)
@@ -52,11 +53,10 @@ if (isHomePage) {
 }
 
 const isCartPage = window.location.href.includes("cart.html");
-if (isCartPage) {
-  renderCartEl();
-}
+if (isCartPage) renderCartEl();
 
 const isRegisterPage = window.location.href.includes("register.html");
-if (isRegisterPage) {
-  registerFormInit();
-}
+if (isRegisterPage) registerFormInit();
+
+const isLoginpage = window.location.href.includes("signIn.html");
+if (isLoginpage) loginFormInit();

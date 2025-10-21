@@ -80,6 +80,10 @@ export function registerFormInit() {
 
   const registerBtn = document.querySelector(".register-btn");
 
+  const registerErrorEl = document.querySelector(
+    ".register-error"
+  ) as HTMLElement;
+
   clearErrorOnFocus(loginInput);
   clearErrorOnFocus(passwordInput);
   clearErrorOnFocus(confirmPasswordInput);
@@ -134,7 +138,10 @@ export function registerFormInit() {
 
   // Helper: clear on focus
   function clearErrorOnFocus(element: HTMLElement): void {
-    element.addEventListener("focus", () => setError(element, ""));
+    element.addEventListener("focus", () => {
+      setError(element, "");
+      registerErrorEl.style.display = "none";
+    });
   }
 
   [
@@ -248,13 +255,16 @@ export function registerFormInit() {
       paymentMethod: selectedPayment,
     };
 
-    registerUser(user).then((data) => {
-      if (data) {
-        console.log("User registered: ", data);
+    registerUser(user).then((result) => {
+      if (result.success) {
+        console.log("User registered:", result.data);
         form.reset();
         streetSelect.innerHTML = '<option value="">Select Street</option>';
+        registerErrorEl.style.display = "none";
       } else {
-        console.log("error happened...");
+        console.log("Error happened:", result.error);
+        registerErrorEl.innerHTML = `Registration failed: ${result.error}`;
+        registerErrorEl.style.display = "flex";
       }
     });
   });

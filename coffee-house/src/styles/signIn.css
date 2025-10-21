@@ -16,7 +16,19 @@ body {
   background-color: var(--background-body);
 }
 
-.sign-in-container {
+.login-error,
+.register-error {
+  display: none;
+}
+
+.register-error {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
   margin-top: 40px;
   display: flex;
   flex-direction: column;
@@ -28,7 +40,7 @@ body {
   padding: 0 16px;
 }
 
-.sign-in-header {
+.login-header {
   font-size: 60px;
   font-weight: 600;
   line-height: 125%;
@@ -68,7 +80,7 @@ body {
   box-shadow: 0 0 0 2px var(--text-accent);
 }
 
-.sign-in-btn,
+.login-btn,
 .register-btn {
   height: 44px;
   border: 1px solid var(--border-dark);
@@ -83,14 +95,13 @@ body {
   margin-top: 40px;
 }
 
-.sign-in-btn:hover,
+.login-btn:hover,
 .register-btn:hover {
   background-color: var(--background-container);
   color: var(--text-light);
 }
 
 /* Registration page layout */
-
 .disabled-btn {
   opacity: 0.6;
   pointer-events: none;
@@ -194,7 +205,7 @@ select.form-input {
 
 /* Small screens (phones) */
 @media (max-width: 600px) {
-  .sign-in-header {
+  .login-header {
     font-size: 36px;
   }
 
@@ -213,7 +224,7 @@ select.form-input {
     font-size: 15px;
   }
 
-  .sign-in-btn {
+  .login-btn {
     width: 100%;
   }
 
@@ -224,7 +235,7 @@ select.form-input {
 
 /* Medium screens (tablets) */
 @media (min-width: 601px) and (max-width: 900px) {
-  .sign-in-header {
+  .login-header {
     font-size: 48px;
   }
 
