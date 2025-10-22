@@ -984,7 +984,7 @@ body.desktop .additive:hover span {
 }
 
 .tooltip {
-  position: absolute;
+  position: fixed;
   background: var(--background-body);
   color: var(--text-dark);
   padding: 8px 10px;
