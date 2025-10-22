@@ -882,6 +882,7 @@ body.desktop .btn-more:hover {
 }
 .size,
 .additive {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -980,4 +981,24 @@ body.desktop .additive:hover span {
   background-color: white;
   color: #403f3d;
   display: block;
+}
+
+.tooltip {
+  position: absolute;
+  background: var(--background-body);
+  color: var(--text-dark);
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-dark);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 150%;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 1002;
+}
+.tooltip.show {
+  opacity: 1;
 }

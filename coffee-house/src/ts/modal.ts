@@ -90,6 +90,7 @@ async function addCartItemCount() {
 }
 
 export function modalView(product: Product): void {
+  const user = localStorage.getItem("user");
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") modalClose();
   });
@@ -144,6 +145,9 @@ export function modalView(product: Product): void {
 
   Object.entries(product.sizes).forEach(([key, sizeData], i) => {
     const btn = createEl("button", `size size-${key}`) as HTMLButtonElement;
+    btn.dataset.originalPrice = String(sizeData.price);
+    if (sizeData.discountPrice)
+      btn.dataset.price = String(sizeData.discountPrice);
     if (i === 0) btn.classList.add("active"); // default first one active
     const span = createEl("span", "", key.toUpperCase());
     const sizeText = document.createElement(`size-${key}`);
@@ -165,6 +169,8 @@ export function modalView(product: Product): void {
       "button",
       `additive add-${i + 1}`
     ) as HTMLButtonElement;
+    btn.dataset.originalPrice = String(add.price);
+    if (add.discountPrice) btn.dataset.price = String(add.discountPrice);
     const span = createEl("span", "", (i + 1).toString());
     btn.append(span, document.createTextNode(" " + add.name));
     additivesWrap.appendChild(btn);
@@ -348,5 +354,55 @@ export function modalView(product: Product): void {
     if (e.target === overlay) {
       modalClose();
     }
+  });
+
+  // tooltip
+  const sizeElements = document.querySelectorAll<HTMLDivElement>(".size");
+  const addElements = document.querySelectorAll<HTMLDivElement>(".additive");
+
+  sizeElements.forEach((size) => {
+    const tooltip = document.createElement("div");
+    tooltip.className = "tooltip";
+    document.body.appendChild(tooltip);
+    size.addEventListener("mouseenter", () => {
+      const price = size.dataset.price;
+      const originalPrice = size.dataset.originalPrice;
+      if (user && price) {
+        tooltip.innerHTML = `<s>$${originalPrice}</s> - $${price}`;
+      } else {
+        tooltip.textContent = `$${originalPrice}`;
+      }
+      const rect = size.getBoundingClientRect();
+      tooltip.style.left = `${rect.left + rect.width / 2}px`;
+      tooltip.style.top = `${rect.top - 30}px`;
+      tooltip.classList.add("show");
+    });
+    size.addEventListener("mouseleave", () => {
+      tooltip.classList.remove("show");
+    });
+  });
+
+  addElements.forEach((add) => {
+    const tooltip = document.createElement("div");
+    tooltip.className = "tooltip";
+    document.body.appendChild(tooltip);
+    add.addEventListener("mouseenter", () => {
+      const price = add.dataset.price;
+      const originalPrice = add.dataset.originalPrice;
+      if (user && price) {
+        tooltip.innerHTML = `<s>$${originalPrice}</s> - $${price}`;
+      } else {
+        tooltip.textContent = `$${originalPrice}`;
+      }
+
+      const rect = add.getBoundingClientRect();
+      tooltip.style.left = `${rect.left + rect.width / 2}px`;
+      tooltip.style.top = `${rect.top - 30}px`;
+      tooltip.classList.add("show");
+    });
+
+    add.addEventListener("mouseleave", () => {
+      tooltip.classList.remove("show");
+    });
   });
 }
