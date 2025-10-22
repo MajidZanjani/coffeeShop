@@ -30,19 +30,45 @@ interface Product {
   additives: Additive[];
 }
 
+interface CartItem {
+  cartId: string;
+  id: number;
+  name: string;
+  price: string;
+  discountPrice: string;
+  size: string;
+  additives: string[];
+  image: string;
+}
+
 const user = localStorage.getItem("user");
 
 export function refreshCartIconCount(): void {
   const cartNavEl = document.querySelector(".cart-el");
   const cartJSON = localStorage.getItem("cart");
   if (cartJSON) {
-    cartNavEl?.classList.add("active");
     const cart = JSON.parse(cartJSON);
-    const cartItemCount = document.querySelector(
-      ".cart-item-count"
-    ) as HTMLElement;
-    if (cartItemCount) {
-      cartItemCount.textContent = String(cart.length);
+    if (user || (!user && cart.length != 0)) {
+      cartNavEl?.classList.add("active");
+      const cartItemCount = document.querySelector(
+        ".cart-item-count"
+      ) as HTMLElement;
+      if (cartItemCount) {
+        cartItemCount.textContent = String(cart.length);
+      }
+    }
+    if (user) {
+      let totalPrice = 0;
+      let totalDiscountprice = 0;
+      cart.forEach((item: CartItem) => {
+        totalPrice += Number(item.price);
+        totalDiscountprice += Number(item.discountPrice);
+      });
+      const totalDiscount = totalPrice - totalDiscountprice;
+      if (totalDiscount != 0) {
+        const disIcon = document.querySelector(".dis-icon") as HTMLElement;
+        if (disIcon) disIcon.textContent = String(totalDiscount.toFixed(2));
+      }
     }
   }
 }

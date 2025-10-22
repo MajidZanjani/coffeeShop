@@ -72,6 +72,20 @@ async function addCartItemCount() {
     const cartItemCount = document.querySelector(".cart-item-count");
     if (cartItemCount)
       cartItemCount.textContent = String(JSON.parse(cartJSON).length);
+    if (user) {
+      let totalPrice = 0;
+      let totalDiscountprice = 0;
+      const cart = JSON.parse(cartJSON);
+      cart.forEach((item: CartItem) => {
+        totalPrice += Number(item.price);
+        totalDiscountprice += Number(item.discountPrice);
+      });
+      const totalDiscount = totalPrice - totalDiscountprice;
+      if (totalDiscount != 0) {
+        const disIcon = document.querySelector(".dis-icon") as HTMLElement;
+        if (disIcon) disIcon.textContent = String(totalDiscount.toFixed(2));
+      }
+    }
   }
 }
 
@@ -288,7 +302,7 @@ export function modalView(product: Product): void {
       if (add) {
         additiveDiscountPrice = add.discountPrice
           ? additiveDiscountPrice + parseFloat(add.discountPrice)
-          : additiveDiscountPrice;
+          : additiveDiscountPrice + parseFloat(add.price);
         additivePrice += parseFloat(add.price);
       }
     });
