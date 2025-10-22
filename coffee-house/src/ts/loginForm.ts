@@ -2,10 +2,15 @@ import { login } from "./login";
 
 export function loginFormInit(): void {
   const loginBtn = document.querySelector(".login-btn");
-  const userNameEl = document.querySelector(".user-name") as HTMLInputElement;
-  const passwordEl = document.querySelector(".password") as HTMLInputElement;
+  const userNameEl = document.getElementById(
+    "login-user-name"
+  ) as HTMLInputElement;
+  const passwordEl = document.getElementById(
+    "login-password"
+  ) as HTMLInputElement;
   const loginErrorEl = document.querySelector(".login-error") as HTMLElement;
   if (!userNameEl || !passwordEl || !loginErrorEl) return;
+  console.log(userNameEl, passwordEl);
 
   loginErrorEl.style.display = "none";
 
@@ -13,6 +18,8 @@ export function loginFormInit(): void {
   clearErrorOnFocus(passwordEl);
 
   loginBtn?.addEventListener("click", async () => {
+    console.log(loginBtn);
+
     const userName = userNameEl.value.trim();
     const password = passwordEl.value.trim();
     const user = {
