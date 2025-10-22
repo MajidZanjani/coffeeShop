@@ -23,18 +23,18 @@
           <div class="register-wrap">
             <div class="user-wrap">
               <span>Login</span>
-              <input type="text" id="login" class="user-name" autocomplete="off" placeholder="placeholder">
+              <input id="reg-user-name" type="text" id="login" class="user-name" autocomplete="off"
+                placeholder="placeholder">
               <div id="login-error" class="hide"></div>
             </div>
             <div class="password-wrap">
               <span>Password</span>
-              <input id="password" id="password" type="password" class="password" autocomplete="off"
-                placeholder="placeholder">
+              <input id="password" type="password" class="password" autocomplete="off" placeholder="placeholder">
               <div id="password-error" class="hide"></div>
             </div>
             <div class="password-wrap">
               <span>Confirm Password</span>
-              <input id="confirm-password" id="confirm-password" type="password" class="password" autocomplete="off"
+              <input id="confirm-password" type="password" class="password" autocomplete="off"
                 placeholder="placeholder">
               <div id="confirm-password-error" class="hide"></div>
             </div>
@@ -72,13 +72,13 @@
               <div class="radio">
                 <div class="radio">
                   <label>
-                    <input type="radio" name="payment" value="cash" checked>
+                    <input id="payment-method-cash" type="radio" name="payment" value="cash" checked>
                     <span class="custom-radio"></span>
                     Cash
                   </label>
 
                   <label>
-                    <input type="radio" name="payment" value="card">
+                    <input id="payment-method-card" type="radio" name="payment" value="card">
                     <span class="custom-radio"></span>
                     Card
                   </label>
