@@ -12,8 +12,7 @@ export function loginFormInit(): void {
   clearErrorOnFocus(userNameEl);
   clearErrorOnFocus(passwordEl);
 
-  loginBtn?.addEventListener("click", async (e) => {
-    e.preventDefault();
+  loginBtn?.addEventListener("click", async () => {
     const userName = userNameEl.value.trim();
     const password = passwordEl.value.trim();
     const user = {
