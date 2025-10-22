@@ -176,7 +176,7 @@ export async function renderCartEl(): Promise<void> {
 
   signInBtn?.addEventListener(
     "click",
-    () => (window.location.href = "signIn.html")
+    () => (window.location.href = "signin.html")
   );
   registerBtn?.addEventListener(
     "click",

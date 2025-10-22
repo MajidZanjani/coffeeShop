@@ -58,5 +58,5 @@ if (isCartPage) renderCartEl();
 const isRegisterPage = window.location.href.includes("register.html");
 if (isRegisterPage) registerFormInit();
 
-const isLoginpage = window.location.href.includes("signIn.html");
+const isLoginpage = window.location.href.includes("signin.html");
 if (isLoginpage) loginFormInit();
