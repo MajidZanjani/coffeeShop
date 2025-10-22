@@ -90,8 +90,15 @@ export function catButton(): void {
 
   async function handleCategoryChange(category: string): Promise<void> {
     if (container) container.innerHTML = "";
-    const loader = new Loader(".products", false);
-    await loader.simulate(2000);
+
+    const loaderEl = document.querySelector(".loader");
+    if (loaderEl) {
+      loaderEl.classList.replace("loader-hide", "loader-show");
+      const loader = new Loader(".loader", false);
+      await loader.simulate(500);
+      loaderEl.classList.replace("loader-show", "loader-hide");
+    }
+
     refreshCartIconCount();
     try {
       const response = await fetch(

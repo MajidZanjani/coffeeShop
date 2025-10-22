@@ -1,5 +1,6 @@
 import { createEl } from "./createEl";
 import { Loader } from "./loader";
+import { orderSubmit } from "./order";
 
 interface CartItem {
   cartId: string;
@@ -10,6 +11,18 @@ interface CartItem {
   size: string;
   additives: string[];
   image: string;
+}
+
+interface OrderItem {
+  productId: number;
+  size: string;
+  additives: string[];
+  quantity: number;
+}
+
+interface Order {
+  items: OrderItem[];
+  totalPrice: number;
 }
 
 const userJSON = localStorage.getItem("user");
@@ -41,7 +54,7 @@ async function cartInit(): Promise<void> {
   if (loaderEl) {
     loaderEl.classList.add("loader-show");
     const loader = new Loader(".loader", false);
-    await loader.simulate(2000);
+    await loader.simulate(500);
     loaderEl.classList.replace("loader-show", "loader-hide");
   }
 
@@ -49,6 +62,9 @@ async function cartInit(): Promise<void> {
     cartNavEl?.classList.add("active");
     updateCartCount(cart.length);
   }
+  const resultMessage = document.querySelector("result-message");
+  if (resultMessage)
+    resultMessage.classList.replace("loader-show", "loader-hide");
 }
 
 // --- Update Cart Item Count ---
@@ -149,7 +165,10 @@ async function renderItems(): Promise<void> {
 }
 
 // --- Render Cart Controls and User Info ---
+let cartInitialized = false;
 export async function renderCartEl(): Promise<void> {
+  if (cartInitialized) return;
+  cartInitialized = true;
   const signInBtn = $(".cart-sign-in");
   const registerBtn = $(".cart-register");
   const confirmBtn = $(".cart-confirm");
@@ -163,6 +182,11 @@ export async function renderCartEl(): Promise<void> {
     "click",
     () => (window.location.href = "register.html")
   );
+  confirmBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo(0, 0);
+    orderCart();
+  });
 
   if (user && btnsEl) {
     btnsEl.style.gridTemplateColumns = "auto";
@@ -196,8 +220,79 @@ export async function renderCartEl(): Promise<void> {
   await cartInit();
   await renderCartEl();
   await renderItems();
-
   // if (user) {
   //   $$(".show-user").forEach((el) => el.classList.remove("show-user"));
   // }
 })();
+
+async function orderCart(): Promise<void> {
+  const resultMessage = document.querySelector(".result-message");
+  resultMessage?.classList.replace(
+    "result-message-show",
+    "result-message-hide"
+  );
+  const cartJSON = localStorage.getItem("cart");
+  const loaderEl = document.querySelector(".loader-hide");
+  const cartEl = document.querySelector(".cart-items");
+  const confirmBtn = document.querySelector(".cart-confirm");
+  const totalNormalEl = document.querySelector(".normal-total");
+  const totalDiscountEl = document.querySelector(".discount-total");
+
+  if (cartJSON) {
+    const cart = JSON.parse(cartJSON);
+    const items: OrderItem[] = [];
+    let totalPrice = 0;
+    cart.forEach((cartItem: CartItem) => {
+      const additives: string[] = [];
+      cartItem.additives.forEach((add) => additives.push(add));
+      const orderItem: OrderItem = {
+        productId: Number(cartItem.id),
+        size: cartItem.size,
+        additives: additives,
+        quantity: 1,
+      };
+      totalPrice += Number(cartItem.discountPrice);
+      items.push(orderItem);
+    });
+    const order: Order = {
+      items: items,
+      totalPrice: Number(totalPrice.toFixed(2)),
+    };
+
+    if (loaderEl && cartEl) {
+      cartEl.classList.replace("cart-show", "cart-hide");
+      loaderEl.classList.replace("loader-hide", "loader-show");
+    }
+    const loader = new Loader(".loader", false);
+    await loader.simulate(1000);
+
+    orderSubmit(order).then((result) => {
+      if (result.success) {
+        localStorage.removeItem("cart");
+        if (resultMessage) {
+          resultMessage.innerHTML = `Thank you for your order! Our manager will contact you shortly.`;
+          resultMessage.classList.replace("alert", "success");
+          if (cartEl) cartEl.innerHTML = "";
+          confirmBtn?.classList.add("show-user");
+          if (totalNormalEl) totalNormalEl.innerHTML = "$0.00";
+          if (totalDiscountEl) totalDiscountEl.innerHTML = "$0.00";
+        }
+      } else {
+        if (resultMessage) {
+          resultMessage.innerHTML = `Something went wrong. Please, try again: ${result.error}`;
+          resultMessage.classList.replace("success", "alert");
+        }
+      }
+      if (loaderEl && cartEl) {
+        cartEl.classList.replace("cart-hide", "cart-show");
+        loaderEl.classList.replace("loader-show", "loader-hide");
+      }
+      if (resultMessage) {
+        resultMessage.classList.replace(
+          "result-message-hide",
+          "result-message-show"
+        );
+      }
+    });
+  }
+}

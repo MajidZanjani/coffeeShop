@@ -170,7 +170,32 @@
 }
 .loader-hide {
   display: none;
-  height: 0;
+}
+.cart-show {
+  display: auto;
+}
+.cart-hide {
+  display: none;
+}
+
+.result-message {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 125%;
+  text-align: center;
+}
+.result-message-show {
+  height: 200px;
+  display: block;
+}
+.result-message-hide {
+  display: none;
+}
+.success {
+  color: forestgreen;
+}
+.alert {
+  color: red;
 }
 
 @media (max-width: 800px) {

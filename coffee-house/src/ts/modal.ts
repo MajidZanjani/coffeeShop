@@ -55,8 +55,16 @@ function modalClose() {
 }
 
 async function addCartItemCount() {
-  const loader = new Loader(".products", false);
-  await loader.simulate(2000);
+  const loaderEl = document.querySelector(".loader");
+  const productsEl = document.querySelector(".products-show");
+  if (loaderEl && productsEl) {
+    loaderEl.classList.replace("loader-hide", "loader-show");
+    productsEl.classList.replace("products-show", "products-hide");
+    const loader = new Loader(".loader", false);
+    await loader.simulate(500);
+    loaderEl.classList.replace("loader-show", "loader-hide");
+    productsEl.classList.replace("products-hide", "products-show");
+  }
   const cartNavEl = document.querySelector(".cart-el");
   const cartJSON = localStorage.getItem("cart");
   if (cartJSON) {

@@ -705,7 +705,7 @@ body.desktop button.inactive:hover img {
   justify-items: center;
   padding: 0;
   margin: 40px 0;
-  display: flex;
+  /* display: flex; */
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
@@ -713,6 +713,14 @@ body.desktop button.inactive:hover img {
   width: 100%;
   position: relative;
 }
+
+.products-hide {
+  display: none;
+}
+.products-show {
+  display: flex;
+}
+
 .error-element {
   position: absolute;
   font-size: 42px;
