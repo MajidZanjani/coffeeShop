@@ -14,7 +14,8 @@ export async function login(user: {}) {
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       console.error("Login failed: ", errorData);
-      throw new Error(`Error ${response.status}: ${response.statusText}`);
+      // throw new Error(`Error ${response.status}: ${response.statusText}`);
+      return null;
     }
 
     const data = await response.json();
