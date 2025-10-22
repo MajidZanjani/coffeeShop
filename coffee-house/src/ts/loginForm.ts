@@ -21,6 +21,7 @@ export function loginFormInit(): void {
       password: password,
     };
     const loggedInUser = await login(user);
+    console.log(loggedInUser);
     if (loggedInUser) {
       console.log("User stored: ", loggedInUser);
       localStorage.setItem("user", JSON.stringify(loggedInUser));
