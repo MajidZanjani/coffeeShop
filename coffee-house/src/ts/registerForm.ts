@@ -1,6 +1,7 @@
+// import { Loader } from "./loader";
 import { registerUser } from "./registerUser";
 
-export function registerFormInit() {
+export function registerFormInit(): void {
   interface StreetsMap {
     [city: string]: string[];
   }
@@ -53,30 +54,30 @@ export function registerFormInit() {
       "Street30",
     ],
   };
+  // const loader = new Loader(".loader", false);
 
   const form = document.getElementById("registration-form") as HTMLFormElement;
 
-  const loginInput = document.getElementById("login") as HTMLInputElement;
-  if (loginInput) loginInput.addEventListener("blur", validateLogin);
+  const loginInput = document.getElementById("user") as HTMLInputElement;
+  loginInput.addEventListener("blur", validateLogin);
 
   const passwordInput = document.getElementById("password") as HTMLInputElement;
-  if (passwordInput) passwordInput.addEventListener("blur", validatePassword);
+  passwordInput.addEventListener("blur", validatePassword);
 
   const confirmPasswordInput = document.getElementById(
     "confirm-password"
   ) as HTMLInputElement;
-  if (confirmPasswordInput)
-    confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
+  confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
 
   const citySelect = document.getElementById("city") as HTMLSelectElement;
-  if (citySelect) citySelect.addEventListener("blur", validateCity);
+  citySelect.addEventListener("blur", validateCity);
 
   const streetSelect = document.getElementById("street") as HTMLSelectElement;
   HTMLSelectElement;
-  if (streetSelect) streetSelect.addEventListener("blur", validateStreet);
+  streetSelect.addEventListener("blur", validateStreet);
 
   const houseInput = document.getElementById("house") as HTMLInputElement;
-  if (houseInput) houseInput.addEventListener("blur", validateHouse);
+  houseInput.addEventListener("blur", validateHouse);
 
   const registerBtn = document.querySelector(".register-btn");
 
@@ -138,6 +139,7 @@ export function registerFormInit() {
 
   // Helper: clear on focus
   function clearErrorOnFocus(element: HTMLElement): void {
+    if (!element) return;
     element.addEventListener("focus", () => {
       setError(element, "");
       registerErrorEl.style.display = "none";
