@@ -21,11 +21,13 @@ export function loginFormInit(): void {
       password: password,
     };
     const loggedInUser = await login(user);
+    console.log(JSON.stringify(user));
     if (loggedInUser) {
       console.log("User stored: ", loggedInUser);
       localStorage.setItem("user", JSON.stringify(loggedInUser));
       window.location.href = "menu.html";
     } else {
+      loginErrorEl.innerHTML = "Incorrect login or password";
       loginErrorEl.style.display = "flex";
       console.log("login failed.");
     }
@@ -47,7 +49,6 @@ export function loginFormInit(): void {
 
   function checkBtn() {
     const isValid = validateUserName() && validatePassword();
-
     if (isValid) {
       loginBtn?.classList.remove("disabled-btn");
       (loginBtn as HTMLButtonElement).disabled = false;
