@@ -78,6 +78,12 @@ function removeFromCart(id: string): void {
   const cart = getCart().filter((item) => item.cartId !== id);
   saveCart(cart);
   updateCartCount(cart.length);
+  if (cart.length === 0) {
+    const totalEl = document.querySelector(".normal-total");
+    const discountTotalEl = document.querySelector(".discount-total");
+    if (totalEl) totalEl.innerHTML = "$0.00";
+    if (discountTotalEl) discountTotalEl.innerHTML = "$0.00";
+  }
   renderItems(); // re-render cart list instantly
 }
 
