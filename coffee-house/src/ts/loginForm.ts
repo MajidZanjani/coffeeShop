@@ -10,28 +10,26 @@ export function loginFormInit(): void {
   ) as HTMLInputElement;
   const loginErrorEl = document.querySelector(".login-error") as HTMLElement;
   if (!userNameEl || !passwordEl || !loginErrorEl) return;
-  console.log(userNameEl, passwordEl);
 
   loginErrorEl.style.display = "none";
 
   clearErrorOnFocus(userNameEl);
   clearErrorOnFocus(passwordEl);
 
-  loginBtn?.addEventListener("click", async () => {
-    console.log(loginBtn);
-
+  loginBtn?.addEventListener("click", async (e) => {
+    e.preventDefault();
     const userName = userNameEl.value.trim();
     const password = passwordEl.value.trim();
     const user = {
       login: userName,
       password: password,
     };
+
     const loggedInUser = await login(user);
-    console.log(JSON.stringify(user));
     if (loggedInUser) {
       console.log("User stored: ", loggedInUser);
       localStorage.setItem("user", JSON.stringify(loggedInUser));
-      window.location.href = "menu.html";
+      window.location.href = "/menu.html";
     } else {
       loginErrorEl.innerHTML = "Incorrect login or password";
       loginErrorEl.style.display = "flex";
