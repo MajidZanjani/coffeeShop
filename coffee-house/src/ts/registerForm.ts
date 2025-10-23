@@ -158,6 +158,23 @@ export function registerFormInit(): void {
     el.addEventListener("change", checkBtn);
   });
 
+  const inputs = form.querySelectorAll<HTMLInputElement | HTMLSelectElement>(
+    "#user, #password, #confirm-password, #city, #street, #house"
+  );
+
+  // Helper function to create or remove error icons
+  function showErrorIcon(field: HTMLElement, show: boolean): void {
+    const errIcon = field.parentElement?.querySelector(
+      ".err-icon"
+    ) as HTMLDivElement | null;
+    if (!errIcon) return;
+    if (show) {
+      errIcon.innerHTML = "&#x26A0;";
+    } else {
+      errIcon.innerHTML = "";
+    }
+  }
+
   // --- Field validation ---
   function validateLogin(): boolean {
     const value = loginInput.value.trim();
@@ -167,9 +184,11 @@ export function registerFormInit(): void {
         loginInput,
         "Login must start with a letter, at least 3 characters, only English letters."
       );
+      showErrorIcon(loginInput, true);
       return false;
     }
     setError(loginInput, "");
+    showErrorIcon(loginInput, false);
     return true;
   }
 
@@ -181,36 +200,50 @@ export function registerFormInit(): void {
         passwordInput,
         "Password must be at least 6 characters and include a special character."
       );
+      showErrorIcon(passwordInput, true);
       return false;
     }
     setError(passwordInput, "");
+    showErrorIcon(passwordInput, false);
     return true;
   }
 
   function validateConfirmPassword(): boolean {
-    if (passwordInput.value !== confirmPasswordInput.value) {
-      setError(confirmPasswordInput, "Passwords do not match.");
+    if (
+      passwordInput.value !== confirmPasswordInput.value ||
+      !confirmPasswordInput.value
+    ) {
+      setError(
+        confirmPasswordInput,
+        "Passwords do not match, or Confirm Password is empty."
+      );
+      showErrorIcon(confirmPasswordInput, true);
       return false;
     }
     setError(confirmPasswordInput, "");
+    showErrorIcon(confirmPasswordInput, false);
     return true;
   }
 
   function validateCity(): boolean {
     if (!citySelect.value) {
       setError(citySelect, "Please select a city.");
+      showErrorIcon(citySelect, true);
       return false;
     }
     setError(citySelect, "");
+    showErrorIcon(citySelect, false);
     return true;
   }
 
   function validateStreet(): boolean {
     if (!streetSelect.value) {
       setError(streetSelect, "Please select a street.");
+      showErrorIcon(streetSelect, true);
       return false;
     }
     setError(streetSelect, "");
+    showErrorIcon(streetSelect, false);
     return true;
   }
 
@@ -218,9 +251,11 @@ export function registerFormInit(): void {
     const value = Number(houseInput.value);
     if (isNaN(value) || value <= 1) {
       setError(houseInput, "House number must be greater than 1.");
+      showErrorIcon(houseInput, true);
       return false;
     }
     setError(houseInput, "");
+    showErrorIcon(houseInput, false);
     return true;
   }
 
@@ -266,7 +301,7 @@ export function registerFormInit(): void {
         form.reset();
         streetSelect.innerHTML = '<option value="">Select Street</option>';
         setTimeout(() => {
-          window.location.href = "signIn.html";
+          window.location.href = "signin.html";
         }, 3000);
       } else {
         console.log("Error happened:", result.error);

@@ -21,20 +21,25 @@
         <div class="loader"></div>
         <form class="form" autocomplete="off" id="registration-form">
           <div class="register-wrap">
+
             <div class="user-wrap">
               <span>Login</span>
-              <input id="user" type="text" id="login" class="user-name" autocomplete="off" placeholder="placeholder">
-              <div id="login-error" class="hide"></div>
+              <input id="user" type="text" class="user-name" autocomplete="off" placeholder="placeholder">
+              <div class="err-icon"></div>
+              <div id="user-error" class="hide"></div>
             </div>
+
             <div class="password-wrap">
               <span>Password</span>
               <input id="password" type="password" class="password" autocomplete="off" placeholder="placeholder">
+              <div class="err-icon"></div>
               <div id="password-error" class="hide"></div>
             </div>
             <div class="password-wrap">
               <span>Confirm Password</span>
               <input id="confirm-password" type="password" class="password" autocomplete="off"
                 placeholder="placeholder">
+              <div class="err-icon"></div>
               <div id="confirm-password-error" class="hide"></div>
             </div>
           </div>
@@ -43,26 +48,31 @@
 
             <div class="city-wrap select-wrapper">
               <span>City</span>
-              <select id="city" class="form-input" id="city">
+              <select id="city" class="form-input">
                 <option value="">Select City</option>
                 <option value="City1">City1</option>
                 <option value="City2">City2</option>
                 <option value="City3">City3</option>
               </select>
+              <div class="err-icon"></div>
+
               <div id="city-error" class="hide"></div>
             </div>
 
             <div class="street-wrap select-wrapper">
               <span>Street</span>
-              <select id="street" class="form-input" id="street">
+              <select id="street" class="form-input">
                 <option value="">Select Street</option>
               </select>
+              <div class="err-icon"></div>
+
               <div id="street-error" class="hide"></div>
             </div>
 
             <div class="house-wrap">
               <span>House number</span>
-              <input type="number" id="house" min="1" placeholder="Enter house number">
+              <input id="house" placeholder="Enter house number">
+              <div class="err-icon"></div>
               <div id="house-error" class="hide"></div>
             </div>
 

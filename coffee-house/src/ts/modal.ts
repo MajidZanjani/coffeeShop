@@ -1,5 +1,4 @@
 import { getCart, saveCart } from "./cart";
-import { refreshCartIconCount } from "./catButton";
 import { createEl } from "./createEl";
 import { Loader } from "./loader";
 
@@ -89,8 +88,56 @@ async function addCartItemCount() {
   }
 }
 
+async function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+// Fetch product from api
+export async function fetchShow(productEl: HTMLElement) {
+  const overlayEl = document.querySelector(".container") as HTMLElement;
+  try {
+    overlayEl.classList.add("active-overlay");
+    overlayEl.style.display = "block";
+    document.body.style.overflow = "hidden";
+    const loader = new Loader(".active-overlay", true);
+    await loader.simulate(1000);
+
+    // Start fetch
+    const response = await fetch(
+      `https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products/${Number(
+        productEl.dataset.productId
+      )}`
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const result = await response.json();
+    const prod = result.data;
+
+    // Close overlay
+    overlayEl.classList.remove("active");
+    document.body.style.overflow = "scroll";
+
+    // Render Modal
+    modalView(prod);
+  } catch (err) {
+    console.error("Error loading products:", err);
+    const errorEl = createEl(
+      "div",
+      "modal-err",
+      "Something went wrong. Please, try again"
+    );
+    // Close overlay
+    overlayEl.classList.remove("active-overlay");
+    document.body.style.overflow = "scroll";
+    productEl.appendChild(errorEl);
+    await sleep(2000);
+    productEl.removeChild(errorEl);
+  }
+}
+
 export function modalView(product: Product): void {
   const user = localStorage.getItem("user");
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") modalClose();
   });
@@ -337,7 +384,7 @@ export function modalView(product: Product): void {
 
   calculateTotal();
 
-  // === OPEN MODAL ===
+  // === OPEN MODAL  ===
   const overlay = document.querySelector(".modal-overlay") as HTMLElement;
   if (overlay) {
     overlay.classList.add("active");

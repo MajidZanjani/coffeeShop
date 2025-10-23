@@ -973,7 +973,13 @@ body.desktop .additive:hover span {
   font-weight: 600;
   line-height: 150%;
   cursor: pointer;
+  transition: 0.4s all;
 }
+body.desktop .modal .close-bottom-btn:hover {
+  color: var(--text-light);
+  background-color: var(--background-container);
+}
+
 .modal .close-btn {
   border-radius: 50%;
   height: 50px;

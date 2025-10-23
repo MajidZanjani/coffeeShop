@@ -207,8 +207,27 @@ select.form-input {
   border: 2px solid red !important;
 }
 
+.user-wrap,
+.password-wrap,
+.city-wrap,
+.street-wrap,
+.house-wrap,
+.payment-wrap,
+.select-wrapper {
+  position: relative;
+}
+
+.err-icon {
+  position: absolute;
+  right: 12px;
+  top: 40%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: red;
+}
+
 /* Small screens (phones) */
-@media (max-width: 600px) {
+@media (max-width: 610px) {
   .login-header {
     font-size: 36px;
   }
@@ -234,13 +253,6 @@ select.form-input {
 
   .payment-wrap {
     gap: 10px;
-  }
-}
-
-/* Medium screens (tablets) */
-@media (min-width: 601px) and (max-width: 900px) {
-  .login-header {
-    font-size: 48px;
   }
 
   .register-wrap,

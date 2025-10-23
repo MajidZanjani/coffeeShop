@@ -1,6 +1,6 @@
 import { createEl } from "./createEl";
 import { Loader } from "./loader";
-import { modalView } from "./modal";
+import { fetchShow } from "./modal";
 
 interface Size {
   size: string;
@@ -226,33 +226,6 @@ export function catButton(): void {
   }
 
   async function handleModalDisplay(productEl: HTMLElement): Promise<void> {
-    try {
-      const response = await fetch(
-        `https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/products/${Number(
-          productEl.dataset.productId
-        )}`
-      );
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const result = await response.json();
-      const prod = result.data;
-
-      // Clear old modal before re-creating
-      const modalContainer = document.querySelector(".modal") as HTMLElement;
-      if (modalContainer) modalContainer.innerHTML = "";
-
-      modalView(prod);
-    } catch (err) {
-      console.error("Error loading products:", err);
-      const errorEl = createEl(
-        "div",
-        "modal-err",
-        "Something went wrong. Please, try again"
-      );
-      productEl.appendChild(errorEl);
-      await sleep(2000);
-      productEl.removeChild(errorEl);
-    }
+    await fetchShow(productEl);
   }
 }
