@@ -182,14 +182,6 @@ export function modalView(product: Product): void {
   const sizeTitle = createEl("div", "size-title", "Size");
   const sizeOptions = createEl("div", "size-options");
 
-  const sizeMap: Record<string, string> = {
-    s: "Small",
-    m: "Medium",
-    l: "Large",
-    xl: "XL",
-    xxl: "XXL",
-  };
-
   Object.entries(product.sizes).forEach(([key, sizeData], i) => {
     const btn = createEl("button", `size size-${key}`) as HTMLButtonElement;
     btn.dataset.originalPrice = String(sizeData.price);
