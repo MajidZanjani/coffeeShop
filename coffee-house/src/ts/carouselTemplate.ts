@@ -26,7 +26,7 @@ export function renderCarousel(): void {
   const title = createEl("div", "fav-title");
 
   const span1 = createEl("span", "fav-title", "Choose your");
-  const span2 = createEl("span", "fav-title-light accent", "favorite");
+  const span2 = createEl("span", "fav-title-light accent", " favorite ");
   const span3 = createEl("span", "fav-title", "coffee");
   title.append(span1, span2, span3);
 
