@@ -1,4 +1,15 @@
-export async function orderSubmit(order: {}) {
+interface OrderItem {
+  productId: number;
+  size: string;
+  additives: string[];
+  quantity: number;
+}
+
+interface Order {
+  items: OrderItem[];
+  totalPrice: number;
+}
+export async function orderSubmit(order: Order) {
   try {
     const response = await fetch(
       "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/orders/confirm",
@@ -21,8 +32,8 @@ export async function orderSubmit(order: {}) {
 
     console.log("Registration successful: ", data);
     return { success: true, data };
-  } catch (error: any) {
+  } catch (error) {
     console.error("Registration failed. Server error: ", error);
-    return { success: false, error: error?.message || "Unknown server error" };
+    return { success: false, error: "Registration failed. Server error" };
   }
 }

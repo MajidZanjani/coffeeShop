@@ -75,8 +75,8 @@ export function refreshCartIconCount(): void {
 
 export function catButton(): void {
   let allProducts: Product[] = [];
-  let currentCategory: string = "coffee";
-  let showingAll: boolean = false;
+  const currentCategory: string = "coffee";
+  // let showingAll: boolean = false;
 
   const container: HTMLElement | null =
     document.querySelector<HTMLElement>(".products");
@@ -85,9 +85,9 @@ export function catButton(): void {
   ) as HTMLElement;
   const categoryButtons: NodeListOf<HTMLElement> =
     document.querySelectorAll<HTMLElement>(".cat-btn");
-  const modal: HTMLElement | null = document.getElementById(
-    "product-modal"
-  ) as HTMLElement;
+  // const modal: HTMLElement | null = document.getElementById(
+  //   "product-modal"
+  // ) as HTMLElement;
 
   categoryButtons.forEach((button: HTMLElement): void => {
     button.addEventListener("click", (): void => {
@@ -138,7 +138,7 @@ export function catButton(): void {
       allProducts = result.data.filter(
         (p: Product) => p.category.toLowerCase() === category
       );
-      showingAll = false;
+      // showingAll = false;
       updateProductView();
     } catch (err) {
       console.error("Error loading products:", err);
@@ -166,7 +166,7 @@ export function catButton(): void {
       renderProductList(allProducts.slice(0, 4));
       btnMore.style.display = "flex";
       btnMore.onclick = (): void => {
-        showingAll = true;
+        // showingAll = true;
         renderProductList(allProducts);
         btnMore!.style.display = "none";
       };
@@ -180,7 +180,7 @@ export function catButton(): void {
     if (!container) return;
     container.innerHTML = "";
 
-    products.forEach((p, i) => {
+    products.forEach((p) => {
       const productWrap = createEl("div", "product");
       productWrap.dataset.productId = String(p.id);
 
@@ -221,9 +221,9 @@ export function catButton(): void {
     );
   }
 
-  async function sleep(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
+  // async function sleep(ms: number): Promise<void> {
+  //   return new Promise((resolve) => setTimeout(resolve, ms));
+  // }
 
   async function handleModalDisplay(productEl: HTMLElement): Promise<void> {
     await fetchShow(productEl);
