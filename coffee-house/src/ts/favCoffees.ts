@@ -1,3 +1,5 @@
+import { createEl } from "./createEl";
+
 interface Coffee {
   id: number;
   name: string;
@@ -53,6 +55,11 @@ export function favCoffees(): void {
         "Default favorite coffees show due to the fetch failor: ",
         error
       );
+      const errorEl = createEl("div", "err-message");
+      const carouselTrackEl = document.querySelector(".carousel-track");
+      errorEl.innerHTML =
+        "Something went wrong. Please, refresh the page.<br>Default Favorite Coffees have been loaded.";
+      carouselTrackEl?.append(errorEl);
     }
   });
 }

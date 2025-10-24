@@ -1008,3 +1008,10 @@ body.desktop .modal .close-bottom-btn:hover {
 .tooltip.show {
   opacity: 1;
 }
+
+.err-message {
+  color: red;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 150%;
+}
