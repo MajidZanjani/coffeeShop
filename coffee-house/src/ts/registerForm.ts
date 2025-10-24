@@ -73,7 +73,6 @@ export function registerFormInit(): void {
   citySelect.addEventListener("blur", validateCity);
 
   const streetSelect = document.getElementById("street") as HTMLSelectElement;
-  HTMLSelectElement;
   streetSelect.addEventListener("blur", validateStreet);
 
   const houseInput = document.getElementById("house") as HTMLInputElement;
@@ -158,9 +157,9 @@ export function registerFormInit(): void {
     el.addEventListener("change", checkBtn);
   });
 
-  const inputs = form.querySelectorAll<HTMLInputElement | HTMLSelectElement>(
-    "#user, #password, #confirm-password, #city, #street, #house"
-  );
+  // const inputs = form.querySelectorAll<HTMLInputElement | HTMLSelectElement>(
+  //   "#user, #password, #confirm-password, #city, #street, #house"
+  // );
 
   // Helper function to create or remove error icons
   function showErrorIcon(field: HTMLElement, show: boolean): void {
@@ -305,7 +304,7 @@ export function registerFormInit(): void {
         }, 3000);
       } else {
         console.log("Error happened:", result.error);
-        registerErrorEl.innerHTML = `⚠️ Registration failed: ${result.error}`;
+        registerErrorEl.innerHTML = `⚠️ ${result.error}`;
         registerErrorEl.style.display = "flex";
       }
     });

@@ -1,4 +1,8 @@
-export async function login(user: {}) {
+interface User {
+  login: string;
+  password: string;
+}
+export async function login(user: User) {
   try {
     const response = await fetch(
       "https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com/auth/login",
