@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <title>Coffee House</title>
+  <link rel="icon" type="image/svg" href="./img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <header id="header"></header>
+    <main>
+      <div class="login-container">
+        <div class="login-header">Registration</div>
+        <div class="loader"></div>
+        <form class="form" autocomplete="off" id="registration-form">
+          <div class="register-wrap">
+
+            <div class="user-wrap">
+              <span>Login</span>
+              <input id="user" type="text" class="user-name" autocomplete="off" placeholder="placeholder">
+              <div class="err-icon"></div>
+              <div id="user-error" class="hide"></div>
+            </div>
+
+            <div class="password-wrap">
+              <span>Password</span>
+              <input id="password" type="password" class="password" autocomplete="off" placeholder="placeholder">
+              <div class="err-icon"></div>
+              <div id="password-error" class="hide"></div>
+            </div>
+            <div class="password-wrap">
+              <span>Confirm Password</span>
+              <input id="confirm-password" type="password" class="password" autocomplete="off"
+                placeholder="placeholder">
+              <div class="err-icon"></div>
+              <div id="confirm-password-error" class="hide"></div>
+            </div>
+          </div>
+
+          <div class="address-wrap">
+
+            <div class="city-wrap select-wrapper">
+              <span>City</span>
+              <select id="city" class="form-input">
+                <option value="">Select City</option>
+                <option value="Tbilisi">Tbilisi</option>
+                <option value="Batumi">Batumi</option>
+                <option value="Kutaisi">Kutaisi</option>
+              </select>
+              <div class="err-icon"></div>
+
+              <div id="city-error" class="hide"></div>
+            </div>
+
+            <div class="street-wrap select-wrapper">
+              <span>Street</span>
+              <select id="street" class="form-input">
+                <option value="">Select Street</option>
+              </select>
+              <div class="err-icon"></div>
+
+              <div id="street-error" class="hide"></div>
+            </div>
+
+            <div class="house-wrap">
+              <span>House number</span>
+              <input id="house" placeholder="Enter house number">
+              <div class="err-icon"></div>
+              <div id="house-error" class="hide"></div>
+            </div>
+
+            <div class="payment-wrap">
+              <span>Paid by</span>
+              <div class="radio">
+                <div class="radio">
+                  <label>
+                    <input id="payment-method-cash" type="radio" name="payment" value="cash" checked>
+                    <span class="custom-radio"></span>
+                    Cash
+                  </label>
+
+                  <label>
+                    <input id="payment-method-card" type="radio" name="payment" value="card">
+                    <span class="custom-radio"></span>
+                    Card
+                  </label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <button type="submit" class="register-btn disabled-btn">Registration</button>
+        </form>
+
+        <div class="register-error"></div>
+
+      </div>
+
+
+    </main>
+    <footer id="footer"></footer>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+/* Colors */
+:root {
+  --text-dark: #403f3d;
+  --text-light: #e1d4c9;
+  --text-accent: #b0907a;
+  --background-body: #e1d4c9;
+  --background-container: #665f55;
+  --background-backdrop: #403f3d;
+  --border-light: #c1b6ad;
+  --border-dark: #665f55;
+  --size: 52px; /* Circle size */
+  --line-w: 20px; /* Line width */
+  --line-h: 2px; /* Line thickness */
+  --gap: 12px; /* Space between lines */
+  --menu-width: 100%;
+}
+
+.burger {
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--background-body);
+  border: 1px solid var(--text-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  z-index: 1001;
+  transition: background 0.3s ease;
+}
+
+body.desktop .burger:hover {
+  background: #dcd0c4;
+}
+
+/* Two centered lines */
+.burger-lines,
+.burger-lines::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: var(--line-w);
+  height: var(--line-h);
+  background: var(--text-dark);
+  border-radius: 4px;
+  transform: translateX(-50%);
+  transition: all 0.35s ease;
+}
+
+.burger-lines {
+  top: 55%;
+  transform: translate(-50%, calc(-1 * var(--gap) / 2)); /* moves slightly up */
+}
+
+.burger-lines::before {
+  top: 55%;
+  transform: translate(-50%, calc(var(--gap) / 2)); /* moves slightly down */
+}
+
+/* --- Active State: Burger → Cross --- */
+.burger.active .burger-lines {
+  transform: translateX(-50%) translateY(-90%) rotate(45deg);
+}
+
+.burger.active .burger-lines::before {
+  transform: translateX(-50%) translateY(-90%) rotate(-90deg);
+}
+
+/* === SLIDE-OUT MENU === */
+.side-menu {
+  position: fixed;
+  right: -100%;
+  width: var(--menu-width);
+  height: 100%;
+  background: var(--background-body);
+  color: var(--text-dark);
+  transition: right 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1000;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-menu li {
+  margin: 60px 0;
+  text-align: center;
+}
+
+.side-menu li.side-cup {
+  margin-top: 100px;
+}
+
+.side-cup a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center; /* center the flex children horizontally */
+  width: 100%; /* take full width so centering is consistent with other items */
+}
+
+.side-menu a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 125%;
+  transition: color 0.3s ease;
+}
+
+body.desktop .side-menu a:hover {
+  color: #b0907a;
+}
+
+.side-menu.active {
+  right: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
