@@ -142,6 +142,7 @@ export function registerFormInit(): void {
     element.addEventListener("focus", () => {
       setError(element, "");
       registerErrorEl.style.display = "none";
+      showErrorIcon(element, false);
     });
   }
 
@@ -166,6 +167,7 @@ export function registerFormInit(): void {
     const errIcon = field.parentElement?.querySelector(
       ".err-icon"
     ) as HTMLDivElement | null;
+
     if (!errIcon) return;
     if (show) {
       errIcon.innerHTML = "&#x26A0;";

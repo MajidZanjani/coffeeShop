@@ -987,6 +987,7 @@ body.desktop .modal .close-bottom-btn:hover {
   background-color: white;
   color: #403f3d;
   display: block;
+  cursor: pointer;
 }
 
 .tooltip {
@@ -1014,4 +1015,19 @@ body.desktop .modal .close-bottom-btn:hover {
   font-size: 24px;
   font-weight: 400;
   line-height: 150%;
+}
+
+.main-menu .nav-loggedin {
+  display: flex;
+}
+.side-menu .nav-loggedin {
+  display: flex;
+  justify-content: center;
+}
+.main-menu .nav-loggedout {
+  display: none;
+}
+.side-menu .nav-loggedout {
+  display: none;
+  justify-content: center;
 }

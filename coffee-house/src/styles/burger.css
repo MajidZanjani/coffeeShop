@@ -88,12 +88,12 @@ body.desktop .burger:hover {
 }
 
 .side-menu li {
-  margin: 60px 0;
+  margin: 30px 0;
   text-align: center;
 }
 
 .side-menu li.side-cup {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .side-cup a {

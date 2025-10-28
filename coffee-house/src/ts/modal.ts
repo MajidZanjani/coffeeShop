@@ -158,6 +158,7 @@ export function modalView(product: Product): void {
     outModal.innerHTML = "";
     overlay.style.display = "none";
     overlay.classList.remove("active");
+    document.body.style.overflow = "scroll";
   });
   outModal.append(closeIcon, modalContainer);
 

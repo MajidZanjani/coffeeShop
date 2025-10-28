@@ -29,6 +29,29 @@ document.addEventListener("DOMContentLoaded", async () => {
   burger();
   layout();
 
+  const user = localStorage.getItem("user");
+  const loggedinNav: NodeListOf<HTMLElement> =
+    document.querySelectorAll(".nav-loggedin");
+  const loggedoutNav: NodeListOf<HTMLElement> =
+    document.querySelectorAll(".nav-loggedout");
+  if (user) {
+    loggedinNav.forEach((el: HTMLElement) => {
+      el.style.display = "none";
+    });
+    loggedoutNav.forEach((el: HTMLElement) => {
+      el.style.display = "flex";
+      el.addEventListener("click", () => {
+        localStorage.removeItem("user");
+        window.location.href = "index.html";
+      });
+    });
+  } else {
+    loggedinNav.forEach((el: HTMLElement) => {
+      el.style.display = "flex";
+    });
+    loggedoutNav.forEach((el: HTMLElement) => (el.style.display = "none"));
+  }
+
   const isMenuPage = window.location.href.includes("menu.html");
   if (isMenuPage) {
     const menuLink = document.querySelector(".cup-menu");
